@@ -23,6 +23,12 @@ final class Button: UIButton {
         }
     }
     
+    var titleFont: UIFont = .systemFont(ofSize: 17) {
+        didSet {
+            setTitle(currentTitle, for: .normal)
+        }
+    }
+    
     @IBInspectable
     var isUnderlined: Bool = false {
         didSet {
@@ -65,7 +71,7 @@ final class Button: UIButton {
         var attributes: [NSAttributedString.Key: Any] = [
             .kern: spacing,
             .foregroundColor: titleColor(for: .normal) as Any,
-            .font: titleLabel?.font as Any
+            .font: titleFont as Any
         ]
         if isUnderlined {
             attributes[.underlineStyle] = NSUnderlineStyle.single.rawValue

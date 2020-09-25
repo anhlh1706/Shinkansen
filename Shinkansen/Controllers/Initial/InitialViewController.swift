@@ -44,7 +44,7 @@ If you have any further question or feedback, please contact me by sending feedb
     private func setupView() {
         view.backgroundColor = .primary
         
-        // MARK: - Buttons position
+        // MARK: - Setup Buttons
         githubButton = Button(type: .text(color: .white), title: "Github Repository")
         githubButton.addTarget(self, action: #selector(openGitHub), for: .touchUpInside)
         
@@ -66,10 +66,10 @@ If you have any further question or feedback, please contact me by sending feedb
         buttonStackView.arrangedSubviews.forEach {
             $0.heightAnchor == 55
             ($0 as? Button)?.spacing = 1.1
-            ($0 as? Button)?.titleLabel?.font = .systemFont(ofSize: 25, weight: .medium)
+            ($0 as? Button)?.titleFont = .systemFont(ofSize: 20, weight: .regular)
         }
         
-        // MARK: Labels position
+        // MARK: Setup Labels
         
         textScrollView = UIScrollView()
         textScrollView.showsVerticalScrollIndicator = false
@@ -83,7 +83,7 @@ If you have any further question or feedback, please contact me by sending feedb
         view.addSubview(textScrollView)
         textScrollView.topAnchor == view.safeAreaLayoutGuide.topAnchor
         textScrollView.horizontalAnchors == view.horizontalAnchors + 20
-        textScrollView.bottomAnchor == buttonStackView.topAnchor
+        textScrollView.bottomAnchor == buttonStackView.topAnchor - 10
         
         textScrollView.addSubview(headlineLabel)
         textScrollView.addSubview(bodyLabel)
@@ -93,7 +93,7 @@ If you have any further question or feedback, please contact me by sending feedb
         headlineLabel.leadingAnchor == textScrollView.leadingAnchor
         headlineLabel.numberOfLines = 0
         headlineLabel.textColor = .background
-        headlineLabel.font = .systemFont(ofSize: 35, weight: .medium)
+        headlineLabel.font = .systemFont(ofSize: 38, weight: .light)
         headlineLabel.linedSpacing = 3
         
         bodyLabel.topAnchor == headlineLabel.bottomAnchor + 30
@@ -102,7 +102,7 @@ If you have any further question or feedback, please contact me by sending feedb
         bodyLabel.bottomAnchor == textScrollView.bottomAnchor
         bodyLabel.numberOfLines = 0
         bodyLabel.textColor = .background
-        bodyLabel.font = .systemFont(ofSize: 20)
+        bodyLabel.font = .systemFont(ofSize: 22, weight: .light)
         bodyLabel.linedSpacing = 5
     }
     
