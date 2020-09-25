@@ -16,11 +16,27 @@ final class BookingCriteriaViewController: UIViewController {
     
     var logoImageView: UIImageView!
     
+    var fromStationContainerView: HeadlineWithContainerView!
+    
+    var fromStationCardControl: StationCardControl!
+    
+    var destinationStationContainerView: HeadlineWithContainerView!
+    
+    var destinationStationCardControl: StationCardControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        fromStationCardControl = StationCardControl(stationNameJP: "some name", stationName: "Okebabe")
+        fromStationContainerView = HeadlineWithContainerView(containingView: fromStationCardControl)
+        fromStationCardControl.layer.borderWidth = 1
+        fromStationCardControl.layer.borderColor = UIColor.gray.cgColor
+        view.addSubview(fromStationContainerView)
+
+        fromStationContainerView.frame = CGRect(x: 100, y: 300, width: 160, height: 100)
+        fromStationContainerView.setTitle(title: "Oke")
         navigationController?.setNavigationBarHidden(true, animated: false)
         
+        // MARK: - Setup Logo
         headlineLabel = Label()
         headlineLabel.numberOfLines = 0
         
@@ -45,5 +61,7 @@ final class BookingCriteriaViewController: UIViewController {
         view.addSubview(headerStackView)
         headerStackView.topAnchor == view.safeAreaLayoutGuide.topAnchor + 30
         headerStackView.horizontalAnchors == view.horizontalAnchors + 20
+        
+        
     }
 }

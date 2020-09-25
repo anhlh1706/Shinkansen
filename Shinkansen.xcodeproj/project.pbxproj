@@ -38,6 +38,9 @@
 		E6628258251D7F5B00072621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6628257251D7F5B00072621 /* Assets.xcassets */; };
 		E662825B251D7F5B00072621 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6628259251D7F5B00072621 /* LaunchScreen.storyboard */; };
 		E6D3742F251DD22A005C057E /* InitialViewControllerAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D3742E251DD22A005C057E /* InitialViewControllerAnimatedTransition.swift */; };
+		E6D37434251DE8DD005C057E /* HeadlineWithContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D37433251DE8DD005C057E /* HeadlineWithContainerView.swift */; };
+		E6D37438251DEA79005C057E /* StationCardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D37437251DEA79005C057E /* StationCardControl.swift */; };
+		E6D37445251DEE3A005C057E /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D37444251DEE3A005C057E /* CALayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +79,9 @@
 		E662825A251D7F5B00072621 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E662825C251D7F5B00072621 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6D3742E251DD22A005C057E /* InitialViewControllerAnimatedTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewControllerAnimatedTransition.swift; sourceTree = "<group>"; };
+		E6D37433251DE8DD005C057E /* HeadlineWithContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineWithContainerView.swift; sourceTree = "<group>"; };
+		E6D37437251DEA79005C057E /* StationCardControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationCardControl.swift; sourceTree = "<group>"; };
+		E6D37444251DEE3A005C057E /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,7 @@
 		E62C3CB7251D83C5004243AE /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
+				E6D3743B251DEA7D005C057E /* CustomViews */,
 				E62C3CBF251D8400004243AE /* Extension */,
 				E62C3CB8251D83D6004243AE /* BaseViews */,
 			);
@@ -147,6 +154,7 @@
 				E62C3CD1251D8400004243AE /* DateFormatter.swift */,
 				E62C3CD2251D8400004243AE /* Double.swift */,
 				E62C3CD3251D8400004243AE /* Optional.swift */,
+				E6D37444251DEE3A005C057E /* CALayer.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -207,10 +215,10 @@
 		E662824D251D7F5A00072621 /* Shinkansen */ = {
 			isa = PBXGroup;
 			children = (
-				E6D3742C251DD200005C057E /* Controllers */,
-				E62C3CED251D854B004243AE /* Resources */,
 				E62C3CEC251D853E004243AE /* Application */,
+				E62C3CED251D854B004243AE /* Resources */,
 				E62C3CB7251D83C5004243AE /* Reusables */,
+				E6D3742C251DD200005C057E /* Controllers */,
 				E662825C251D7F5B00072621 /* Info.plist */,
 			);
 			path = Shinkansen;
@@ -233,6 +241,15 @@
 				E6D3742E251DD22A005C057E /* InitialViewControllerAnimatedTransition.swift */,
 			);
 			path = Initial;
+			sourceTree = "<group>";
+		};
+		E6D3743B251DEA7D005C057E /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				E6D37433251DE8DD005C057E /* HeadlineWithContainerView.swift */,
+				E6D37437251DEA79005C057E /* StationCardControl.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,9 +375,12 @@
 				E62C3CE3251D8400004243AE /* String.swift in Sources */,
 				E62C3CDB251D8400004243AE /* UIColor.swift in Sources */,
 				E62C3CDD251D8400004243AE /* UICollectionView.swift in Sources */,
+				E6D37445251DEE3A005C057E /* CALayer.swift in Sources */,
 				E62C3CE4251D8400004243AE /* UserDefaults.swift in Sources */,
+				E6D37438251DEA79005C057E /* StationCardControl.swift in Sources */,
 				E62C3CE6251D8400004243AE /* DateFormatter.swift in Sources */,
 				E62C3CD9251D8400004243AE /* Array.swift in Sources */,
+				E6D37434251DE8DD005C057E /* HeadlineWithContainerView.swift in Sources */,
 				E62C3CE1251D8400004243AE /* Dictionary.swift in Sources */,
 				E62C3CE7251D8400004243AE /* Double.swift in Sources */,
 				E62C3CE8251D8400004243AE /* Optional.swift in Sources */,
