@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DesignSystemViewController.swift
 //  Shinkansen
 //
 //  Created by Lê Hoàng Anh on 25/09/2020.
@@ -7,13 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+final class DesignSystemViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .background
     }
-
-
 }
-
