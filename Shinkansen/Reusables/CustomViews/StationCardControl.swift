@@ -10,6 +10,21 @@ import Anchorage
 
 final class StationCardControl: UIControl {
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = 0.55
+            self.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = self.isHighlighted ? 0.54 : 1
+            self.transform = self.isHighlighted ? CGAffineTransform(scaleX: 0.98, y: 0.98) : .identity
+        }
+    }
+    
     var basedHeight: CGFloat = 72 {
         didSet {
             heightConstraint.constant = basedHeight
@@ -28,37 +43,20 @@ final class StationCardControl: UIControl {
     
     private var stationNameLabel: Label
     
-    private var contentView: UIView
-    
-    var currentState: State = .normal {
-        didSet {
-            updateAppearance()
-        }
-    }
-    
-    override var isEnabled: Bool {
-        didSet {
-            currentState = isEnabled ? .normal : .disabled
-        }
-    }
-    
-    override var isHighlighted: Bool {
-        didSet {
-            if isEnabled {
-                currentState = isHighlighted ? .highlighted : .normal
-            }
-        }
-    }
+    var contentView: UIView
     
     init(stationNameJP: String? = nil,
          stationName: String? = nil) {
-        contentView = UIView()
         heightConstraint = NSLayoutConstraint()
         contentStackView = UIStackView()
         stationNameJPLabel = Label()
         stationNameLabel = Label()
+        contentView = UIView()
+        contentView.isUserInteractionEnabled = false
+        contentStackView.isUserInteractionEnabled = false
         super.init(frame: .zero)
         setupView()
+        setupTheme()
         setupValue(stationNameJP: stationNameJP, stationName: stationName)
     }
     
@@ -66,37 +64,30 @@ final class StationCardControl: UIControl {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func updateAppearance() {
-        let contentViewOpacity: Float = currentState == .highlighted ? 0.54 : 1
-        contentView.layer.setOpacityAnimated(contentViewOpacity)
-        
-        let transform = currentState == .highlighted ? CATransform3DMakeScale(0.98, 0.98, 1) : CATransform3DIdentity
-        contentView.layer.setTransformAnimated(transform)
-        
-    }
-    
     private func setupView() {
-        addSubview(contentView)
-        contentView.edgeAnchors == edgeAnchors
-        contentView.clipsToBounds = true
-        contentView.isUserInteractionEnabled = false
-        
         translatesAutoresizingMaskIntoConstraints = false
         heightConstraint = heightAnchor.constraint(equalToConstant: basedHeight)
         
         heightConstraint.isActive = true
         contentStackView.spacing = 0
         
+        contentStackView.axis = .vertical
+        
+        addSubview(contentView)
+        contentView.edgeAnchors == edgeAnchors
+        
+        contentView.addSubview(contentStackView)
+        contentStackView.centerAnchors == contentView.centerAnchors
+        contentStackView.verticalAnchors == contentView.verticalAnchors + 7
+        
         stationNameJPLabel.textAlignment = .center
         stationNameLabel.textAlignment = .center
         
         contentStackView.addArrangedSubview(stationNameJPLabel)
         contentStackView.addArrangedSubview(stationNameLabel)
-        
-        contentStackView.axis = .vertical
-        
-        contentView.addSubview(contentStackView)
-        contentStackView.edgeAnchors == contentView.edgeAnchors
+        contentStackView.alignment = .center
+        contentView.backgroundColor = .background
+        contentView.layer.setLayerStyle(LayerStyle.normalCard())
     }
     
     public func setupValue(stationNameJP: String? = nil,
@@ -105,13 +96,13 @@ final class StationCardControl: UIControl {
         stationNameLabel.text = stationName
     }
     
-//    public func setupTheme() {
-//        heightConstraint.constant = basedHeight.systemSizeMuliplier()
-//        
-//        stationNameJPLabel.textStyle = textStyle.title1()
-//        stationNameLabel.textStyle = textStyle.caption1Alt()
-//        
-//        stationNameJPLabel.textColor = currentColorTheme.componentColor.callToAction
-//        stationNameLabel.textColor = currentColorTheme.componentColor.callToAction
-//    }
+    public func setupTheme() {
+        heightConstraint.constant = basedHeight
+        
+        stationNameJPLabel.font = .systemFont(ofSize: 24)
+        stationNameLabel.font = .systemFont(ofSize: 14)
+        
+        stationNameJPLabel.textColor = .primary
+        stationNameLabel.textColor = .primary
+    }
 }

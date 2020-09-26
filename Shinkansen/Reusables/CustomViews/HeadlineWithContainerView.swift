@@ -41,9 +41,11 @@ final class HeadlineWithContainerView: UIStackView {
     
     func setupTheme() {
         titleLabel.textColor = .subtext
+        titleLabel.font = UIFontMetrics(forTextStyle: .footnote).scaledFont(for:
+                                                                                UIFont.systemFont(ofSize: 11, weight: .medium), maximumPointSize: 16)
     }
     
     func setTitle(title: String) {
-        titleLabel.text = title
+        titleLabel.text = title.uppercased()
     }
 }

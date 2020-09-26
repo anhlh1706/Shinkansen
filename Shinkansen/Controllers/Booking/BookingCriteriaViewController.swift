@@ -8,6 +8,11 @@
 import UIKit
 import Anchorage
 
+struct Station {
+    var kanjiName: String
+    var romajiName: String
+}
+
 final class BookingCriteriaViewController: UIViewController {
     
     var headerStackView: UIStackView!
@@ -16,9 +21,13 @@ final class BookingCriteriaViewController: UIViewController {
     
     var logoImageView: UIImageView!
     
+    var stationsContainerStackView: UIStackView!
+    
     var fromStationContainerView: HeadlineWithContainerView!
     
     var fromStationCardControl: StationCardControl!
+    
+    var arrowImageView: UIImageView!
     
     var destinationStationContainerView: HeadlineWithContainerView!
     
@@ -26,17 +35,8 @@ final class BookingCriteriaViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fromStationCardControl = StationCardControl(stationNameJP: "some name", stationName: "Okebabe")
-        fromStationContainerView = HeadlineWithContainerView(containingView: fromStationCardControl)
-        fromStationCardControl.layer.borderWidth = 1
-        fromStationCardControl.layer.borderColor = UIColor.gray.cgColor
-        view.addSubview(fromStationContainerView)
-
-        fromStationContainerView.frame = CGRect(x: 100, y: 300, width: 160, height: 100)
-        fromStationContainerView.setTitle(title: "Oke")
-        navigationController?.setNavigationBarHidden(true, animated: false)
         
-        // MARK: - Setup Logo
+        // MARK: - Setup logo section
         headlineLabel = Label()
         headlineLabel.numberOfLines = 0
         
@@ -63,5 +63,39 @@ final class BookingCriteriaViewController: UIViewController {
         headerStackView.horizontalAnchors == view.horizontalAnchors + 20
         
         
+        // MARK: - Setup stations section
+        fromStationCardControl = StationCardControl(stationNameJP: "東京", stationName: "Tokyo")
+        fromStationContainerView = HeadlineWithContainerView(containingView: fromStationCardControl)
+        fromStationContainerView.setTitle(title: "From")
+        
+        let arrowContainerView = UIView()
+        arrowImageView = UIImageView(image: UIImage(named: "iconArrowRight"))
+        arrowImageView.contentMode = .scaleAspectFit
+        arrowImageView.tintColor = .primary
+        
+        arrowContainerView.addSubview(arrowImageView)
+        arrowImageView.horizontalAnchors == arrowContainerView.horizontalAnchors
+        arrowImageView.bottomAnchor == arrowContainerView.bottomAnchor - 24
+        
+        destinationStationCardControl = StationCardControl(stationNameJP: "大阪", stationName: "Osaka")
+        destinationStationContainerView = HeadlineWithContainerView(containingView: destinationStationCardControl)
+        destinationStationContainerView.setTitle(title: "Destination")
+        
+        stationsContainerStackView = UIStackView(arrangedSubviews: [fromStationContainerView, arrowContainerView, destinationStationContainerView])
+        
+        view.addSubview(stationsContainerStackView)
+        stationsContainerStackView.topAnchor == headerStackView.bottomAnchor + 60
+        stationsContainerStackView.horizontalAnchors == view.horizontalAnchors + 20
+        stationsContainerStackView.heightAnchor == 96
+        
+        let buttonsWidth = (stationsContainerStackView.widthAnchor / 2) - 20
+        fromStationContainerView.widthAnchor == buttonsWidth
+        destinationStationContainerView.widthAnchor == buttonsWidth
+        
+        
+        
+        
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 }
