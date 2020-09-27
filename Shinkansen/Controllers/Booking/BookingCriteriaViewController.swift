@@ -33,6 +33,12 @@ final class BookingCriteriaViewController: UIViewController {
     
     var destinationStationCardControl: StationCardControl!
     
+    var dateSegmentContainerView: HeadlineWithContainerView!
+    
+//    var dateSegment: !
+    
+    var timeSegmentContainerView: HeadlineWithContainerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,7 +98,8 @@ final class BookingCriteriaViewController: UIViewController {
         fromStationContainerView.widthAnchor == buttonsWidth
         destinationStationContainerView.widthAnchor == buttonsWidth
         
-        
+        // MARK: - Setup date segment
+//        dateSegmentContainerView = HeadlineWithContainerView(title: "Date", containingView: UIView())
         
         
         

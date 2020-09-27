@@ -87,7 +87,7 @@ final class StationCardControl: UIControl {
         contentStackView.addArrangedSubview(stationNameLabel)
         contentStackView.alignment = .center
         contentView.backgroundColor = .background
-        contentView.layer.setLayerStyle(LayerStyle.normalCard())
+        contentView.layer.setLayerStyle(LayerStyle.card.normal)
     }
     
     public func setupValue(stationNameJP: String? = nil,

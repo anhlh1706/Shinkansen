@@ -7,46 +7,6 @@
 
 import UIKit
 
-struct ShadowStyle {
-
-    var shadowOpacity: Float
-
-    var shadowRadius: CGFloat
-
-    var shadowOffset: CGSize
-
-    var shadowColor: UIColor?
-    
-    init(shadowOpacity: Float = 1.0,
-         shadowRadius: CGFloat = 0,
-         shadowOffset: CGSize = .zero,
-         shadowColor: UIColor? = nil) {
-        self.shadowOpacity = shadowOpacity
-        self.shadowRadius = shadowRadius
-        self.shadowOffset = shadowOffset
-        self.shadowColor = shadowColor
-    }
-    
-    static func normalCard() -> ShadowStyle {
-        return ShadowStyle(shadowOpacity: 0.12, shadowRadius: 10, shadowOffset: .init(width: 0, height: 5), shadowColor: .black)
-    }
-}
-
-struct LayerStyle {
-    
-    var opacity: Float
-    
-    var cornerRadius: CGFloat
-    
-    var backgroundColor: UIColor?
-    
-    var shadowStyle: ShadowStyle
-    
-    static func normalCard() -> LayerStyle {
-        return LayerStyle(opacity: 1, cornerRadius: 8, backgroundColor: .background, shadowStyle: ShadowStyle.normalCard())
-    }
-}
-
 extension CALayer {
     
     func setLayerStyle(_ layerStyle: LayerStyle) {

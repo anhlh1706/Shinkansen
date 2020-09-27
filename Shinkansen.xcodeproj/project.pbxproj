@@ -41,6 +41,10 @@
 		E6D37434251DE8DD005C057E /* HeadlineWithContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D37433251DE8DD005C057E /* HeadlineWithContainerView.swift */; };
 		E6D37438251DEA79005C057E /* StationCardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D37437251DEA79005C057E /* StationCardControl.swift */; };
 		E6D37445251DEE3A005C057E /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D37444251DEE3A005C057E /* CALayer.swift */; };
+		E6DE3A03251FA16100C80DFF /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE3A02251FA16100C80DFF /* SegmentControl.swift */; };
+		E6DE3A06251FA1B300C80DFF /* SegmentedItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE3A05251FA1B300C80DFF /* SegmentedItemControl.swift */; };
+		E6DE3A09251FA59500C80DFF /* LayerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE3A08251FA59500C80DFF /* LayerStyle.swift */; };
+		E6DE3A0C251FA62000C80DFF /* ShadowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE3A0B251FA62000C80DFF /* ShadowStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +86,10 @@
 		E6D37433251DE8DD005C057E /* HeadlineWithContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineWithContainerView.swift; sourceTree = "<group>"; };
 		E6D37437251DEA79005C057E /* StationCardControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationCardControl.swift; sourceTree = "<group>"; };
 		E6D37444251DEE3A005C057E /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
+		E6DE3A02251FA16100C80DFF /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
+		E6DE3A05251FA1B300C80DFF /* SegmentedItemControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedItemControl.swift; sourceTree = "<group>"; };
+		E6DE3A08251FA59500C80DFF /* LayerStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerStyle.swift; sourceTree = "<group>"; };
+		E6DE3A0B251FA62000C80DFF /* ShadowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +127,8 @@
 				E6D3743B251DEA7D005C057E /* CustomViews */,
 				E62C3CBF251D8400004243AE /* Extension */,
 				E62C3CB8251D83D6004243AE /* BaseViews */,
+				E6DE3A08251FA59500C80DFF /* LayerStyle.swift */,
+				E6DE3A0B251FA62000C80DFF /* ShadowStyle.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -248,6 +258,8 @@
 			children = (
 				E6D37433251DE8DD005C057E /* HeadlineWithContainerView.swift */,
 				E6D37437251DEA79005C057E /* StationCardControl.swift */,
+				E6DE3A02251FA16100C80DFF /* SegmentControl.swift */,
+				E6DE3A05251FA1B300C80DFF /* SegmentedItemControl.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -367,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E62C3CBD251D83ED004243AE /* Button.swift in Sources */,
+				E6DE3A06251FA1B300C80DFF /* SegmentedItemControl.swift in Sources */,
 				E64BCC9D251DAC8D009C036A /* BookingCriteriaViewController.swift in Sources */,
 				E62C3CE5251D8400004243AE /* UIImage.swift in Sources */,
 				E6D3742F251DD22A005C057E /* InitialViewControllerAnimatedTransition.swift in Sources */,
@@ -378,6 +391,7 @@
 				E6D37445251DEE3A005C057E /* CALayer.swift in Sources */,
 				E62C3CE4251D8400004243AE /* UserDefaults.swift in Sources */,
 				E6D37438251DEA79005C057E /* StationCardControl.swift in Sources */,
+				E6DE3A09251FA59500C80DFF /* LayerStyle.swift in Sources */,
 				E62C3CE6251D8400004243AE /* DateFormatter.swift in Sources */,
 				E62C3CD9251D8400004243AE /* Array.swift in Sources */,
 				E6D37434251DE8DD005C057E /* HeadlineWithContainerView.swift in Sources */,
@@ -385,9 +399,11 @@
 				E62C3CE7251D8400004243AE /* Double.swift in Sources */,
 				E62C3CE8251D8400004243AE /* Optional.swift in Sources */,
 				E62C3CE2251D8400004243AE /* URL.swift in Sources */,
+				E6DE3A0C251FA62000C80DFF /* ShadowStyle.swift in Sources */,
 				E62C3CD5251D8400004243AE /* Date.swift in Sources */,
 				E6628253251D7F5A00072621 /* InitialViewController.swift in Sources */,
 				E62C3CD6251D8400004243AE /* UIView.swift in Sources */,
+				E6DE3A03251FA16100C80DFF /* SegmentControl.swift in Sources */,
 				E662824F251D7F5A00072621 /* AppDelegate.swift in Sources */,
 				E62C3CDE251D8400004243AE /* NSMutableAttributedString.swift in Sources */,
 				E62C3CBA251D83E3004243AE /* Label.swift in Sources */,
