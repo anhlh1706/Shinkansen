@@ -33,7 +33,8 @@ final class SegmentedItemControl: UIControl {
     override var isEnabled: Bool {
         didSet {
             currentState = isEnabled ? .normal : .disabled
-            unselectedTitleLabel.text = isEnabled ? title : "~~\(title)~~"
+            unselectedTitleLabel.text = title
+            setupTheme()
         }
     }
     
@@ -157,9 +158,7 @@ final class SegmentedItemControl: UIControl {
     
     private func updateAppearance(animated: Bool = true) {
         let shadowStyle = currentState == .selected ? ShadowStyle.segmentedItem.selected : ShadowStyle.segmentedItem.normal
-        UIView.animate(withDuration: 0.2) {
-            self.layer.setShadowStyle(shadowStyle)
-        }
+        layer.setShadowStyle(shadowStyle)
         
         setLabelsToSelected(currentState == .selected, animated: animated)
         
@@ -168,7 +167,7 @@ final class SegmentedItemControl: UIControl {
     public func setupTheme() {
         titleLabel.font = .systemFont(ofSize: 16)
         unselectedTitleLabel.font = .systemFont(ofSize: 16)
-        unselectedTitleLabel.isStrikethrough = true
+        unselectedTitleLabel.isStrikethrough = currentState == .disabled
         subtitleLabel.font = .systemFont(ofSize: 10, weight: .medium)
         
         titleLabel.textColor = .primary

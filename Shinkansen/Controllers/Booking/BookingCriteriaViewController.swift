@@ -13,7 +13,7 @@ struct Station {
     var romajiName: String
 }
 
-final class BookingCriteriaViewController: UIViewController {
+final class BookingCriteriaViewController: BookingViewController {
     
     var headerStackView: UIStackView!
     
@@ -121,6 +121,11 @@ final class BookingCriteriaViewController: UIViewController {
                                       (title: "Tomorrow", subtitle: formatter.string(from: tomorrow), true),
                                       (title: "Pick a Date", subtitle: " ", true)]
         
+        dateSegmentedControl
+            .addTarget(self,
+                       action: #selector(reloadTimeSegemtnedControl),
+                       for: .valueChanged)
+        
         // MARK: - Setup time section
         
         timeSegmentedControl = SegmentedControl()
@@ -148,6 +153,7 @@ final class BookingCriteriaViewController: UIViewController {
         searchTicketButton.addTarget(self,action: #selector(searchAction), for: .touchUpInside)
         
         navigationController?.setNavigationBarHidden(true, animated: false)
+        backButton.alpha = 0
     }
     
     @objc
@@ -175,20 +181,20 @@ final class BookingCriteriaViewController: UIViewController {
         }
         let trainSelectionVC = TrainSelectionViewController()
         
-        let formatter = DateFormatter.dateOnly()
+        let formatter = DateFormatter.longStyle()
         let dayOfWeek = Calendar.current.weekdaySymbols[Calendar.current.component(.weekday, from: selectedDate) - 1]
         let date = formatter.string(from: selectedDate)
         let fromStation = "Tokyo"
         let toStation = "Ōmiya"
         
-//        trainSelectionVC.headerInformation =
-//            HeaderInformation(dayOfWeek: dayOfWeek,
-//                              date: date,
-//                              fromStation: fromStation,
-//                              toStation: toStation)
+        trainSelectionVC.headerInformation =
+            HeaderInformation(dayOfWeek: dayOfWeek,
+                              date: date,
+                              fromStation: fromStation,
+                              toStation: toStation)
 //        trainSelectionVC.dateOffset = dateOffset
 //        trainSelectionVC.timeOffset = timeOffset
-//        navigationController?.pushViewController(trainSelectionVC, animated: true)
+        navigationController?.pushViewController(trainSelectionVC, animated: true)
     }
     
     @objc

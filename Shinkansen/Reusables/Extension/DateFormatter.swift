@@ -31,6 +31,13 @@ extension DateFormatter {
         return dateformatter
     }
     
+    static func longStyle() -> DateFormatter {
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .long
+        
+        return dateformatter
+    }
+    
     static func dateTime() -> DateFormatter {
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "yyyy-MM-dd HH:mm:ss"

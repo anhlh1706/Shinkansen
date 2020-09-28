@@ -71,12 +71,14 @@ final class Label: UILabel {
     private func styleText() {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = linedSpacing
+        paragraphStyle.alignment = textAlignment
         
         var attributes: [NSAttributedString.Key: Any] = [
             .kern: spacing,
             .paragraphStyle: paragraphStyle,
             .foregroundColor: textColor as Any,
-            .font: font as Any
+            .font: font as Any,
+            .strikethroughStyle: isStrikethrough ? 1 : 0
         ]
         if isUnderlined {
             attributes[.underlineStyle] = NSUnderlineStyle.single.rawValue

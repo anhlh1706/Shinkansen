@@ -201,3 +201,152 @@ extension UIView {
         layer.add(shake, forKey: "position")
     }
 }
+
+extension UIView {
+
+    class func animate(withStyle style: UIViewAnimationStyle,
+                              delay: TimeInterval = 0,
+                              animations: @escaping () -> Swift.Void,
+                              completion: ((Bool) -> Swift.Void)? = nil) {
+
+        animate(withDuration: style.duration,
+                delay: delay,
+                usingSpringWithDamping: style.dampingRatio,
+                initialSpringVelocity: style.velocity,
+                options: style.options,
+                animations: animations,
+                completion: completion)
+    }
+    
+    @discardableResult
+    func constraintBottomSafeArea(to view: UIView,
+                                  withGreaterThanConstant greaterThanConstant: CGFloat,
+                                  minimunConstant: CGFloat = 0) -> [NSLayoutConstraint] {
+        
+        let bottomConstraint = self
+            .bottomAnchor
+            .constraint(greaterThanOrEqualTo: view.bottomAnchor,
+                        constant: greaterThanConstant > greaterThanConstant ? greaterThanConstant : greaterThanConstant)
+        
+        let bottomSafeAreaConstraint = self
+            .safeAreaLayoutGuide
+            .bottomAnchor
+            .constraint(equalTo: view.bottomAnchor,
+                        constant: minimunConstant)
+        bottomSafeAreaConstraint.priority = .defaultHigh
+        
+        let anchors = [bottomConstraint, bottomSafeAreaConstraint]
+        
+        NSLayoutConstraint.activate(anchors)
+        
+        return anchors
+    }
+    
+    func frame(in view: UIView) -> CGRect {
+        return superview?.convert(frame, to: view) ?? convert(frame, to: view)
+    }
+    
+    func translateAndFade(as direction: TransitionalDirection,
+                        animationStyle: UIViewAnimationStyle,
+                        percentageEndPoint: TimeInterval = 1,
+                        translate: CGPoint) {
+        
+        layer.removeAllAnimations()
+        
+        let duration = animationStyle.duration *
+            (direction == .transitionIn ? 1 - percentageEndPoint : percentageEndPoint)
+        let delay = animationStyle.duration - duration
+        
+        var mutatedAnimationStyle = animationStyle
+        mutatedAnimationStyle.duration = duration
+        
+        if direction == .transitionIn {
+            transform.tx = translate.x
+            transform.ty = translate.y
+            alpha = 0
+            UIView.animate(withStyle: mutatedAnimationStyle,
+                           delay: delay,
+                           animations: {
+                self.transform.tx = 0
+                self.transform.ty = 0
+                self.alpha = 1
+            })
+        }
+        
+        if direction == .transitionOut {
+            transform.tx = 0
+            transform.ty = 0
+            alpha = 1
+            UIView.animate(withStyle: mutatedAnimationStyle,
+                           animations: {
+                self.transform.tx = translate.x
+                self.transform.ty = translate.y
+                self.alpha = 0
+            })
+        }
+    }
+    
+    func transformAnimation(as direction: TransitionalDirection,
+                          animationStyle: UIViewAnimationStyle,
+                          percentageEndPoint: TimeInterval = 1,
+                          transform: CGAffineTransform) {
+        
+        let duration = animationStyle.duration *
+            (direction == .transitionIn ? 1 - percentageEndPoint : percentageEndPoint)
+        let delay = animationStyle.duration - duration
+        
+        var mutatedAnimationStyle = animationStyle
+        mutatedAnimationStyle.duration = duration
+        
+        if direction == .transitionIn {
+            self.transform = transform
+            UIView.animate(withStyle: mutatedAnimationStyle,
+                           delay: delay,
+                           animations: {
+                            self.transform = .identity
+            })
+        }
+        
+        if direction == .transitionOut {
+            self.transform = .identity
+            UIView.animate(withStyle: mutatedAnimationStyle,
+                           animations: {
+                            self.transform = transform
+            })
+        }
+    }
+    
+    func fadeAnimation(as direction: TransitionalDirection,
+                          animationStyle: UIViewAnimationStyle,
+                          percentageEndPoint: TimeInterval = 1) {
+        
+        let duration = animationStyle.duration *
+            (direction == .transitionIn ? 1 - percentageEndPoint : percentageEndPoint)
+        let delay = animationStyle.duration - duration
+        
+        var mutatedAnimationStyle = animationStyle
+        mutatedAnimationStyle.duration = duration
+        
+        if direction == .transitionIn {
+            alpha = 0
+            UIView.animate(withStyle: mutatedAnimationStyle,
+                           delay: delay,
+                           animations: {
+                            self.alpha = 1
+            })
+        }
+        
+        if direction == .transitionOut {
+            alpha = 1
+            UIView.animate(withStyle: mutatedAnimationStyle,
+                           animations: {
+                            self.alpha = 0
+            })
+        }
+    }
+    
+    enum TransitionalDirection {
+        case transitionIn
+        case transitionOut
+    }
+}
