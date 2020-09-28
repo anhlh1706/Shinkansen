@@ -31,6 +31,12 @@
 		E62C3CE8251D8400004243AE /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62C3CD3251D8400004243AE /* Optional.swift */; };
 		E62C3CEF251D855B004243AE /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E62C3CEE251D855B004243AE /* Colors.xcassets */; };
 		E62C3CF5251D86A9004243AE /* DesignSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62C3CF4251D86A9004243AE /* DesignSystemViewController.swift */; };
+		E64997CE252195B300CF5D47 /* TrainSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64997CD252195B300CF5D47 /* TrainSelectionViewController.swift */; };
+		E64997D425219A1D00CF5D47 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64997D325219A1D00CF5D47 /* BackButton.swift */; };
+		E64997D725219CFC00CF5D47 /* InteractivePopOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64997D625219CFB00CF5D47 /* InteractivePopOverlayView.swift */; };
+		E64997E02521A3D800CF5D47 /* HeaderRouteInfomationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64997DF2521A3D800CF5D47 /* HeaderRouteInfomationView.swift */; };
+		E64997E32521A3F600CF5D47 /* StationPairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64997E22521A3F600CF5D47 /* StationPairView.swift */; };
+		E64997E62521A50500CF5D47 /* HeadlineLabelSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64997E52521A50500CF5D47 /* HeadlineLabelSetView.swift */; };
 		E64BCC9D251DAC8D009C036A /* BookingCriteriaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64BCC9C251DAC8D009C036A /* BookingCriteriaViewController.swift */; };
 		E662824F251D7F5A00072621 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E662824E251D7F5A00072621 /* AppDelegate.swift */; };
 		E6628251251D7F5A00072621 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6628250251D7F5A00072621 /* SceneDelegate.swift */; };
@@ -74,6 +80,12 @@
 		E62C3CD3251D8400004243AE /* Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		E62C3CEE251D855B004243AE /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		E62C3CF4251D86A9004243AE /* DesignSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemViewController.swift; sourceTree = "<group>"; };
+		E64997CD252195B300CF5D47 /* TrainSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainSelectionViewController.swift; sourceTree = "<group>"; };
+		E64997D325219A1D00CF5D47 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		E64997D625219CFB00CF5D47 /* InteractivePopOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivePopOverlayView.swift; sourceTree = "<group>"; };
+		E64997DF2521A3D800CF5D47 /* HeaderRouteInfomationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderRouteInfomationView.swift; sourceTree = "<group>"; };
+		E64997E22521A3F600CF5D47 /* StationPairView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationPairView.swift; sourceTree = "<group>"; };
+		E64997E52521A50500CF5D47 /* HeadlineLabelSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineLabelSetView.swift; sourceTree = "<group>"; };
 		E64BCC9C251DAC8D009C036A /* BookingCriteriaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCriteriaViewController.swift; sourceTree = "<group>"; };
 		E662824B251D7F5A00072621 /* Shinkansen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shinkansen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E662824E251D7F5A00072621 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				E64BCC9C251DAC8D009C036A /* BookingCriteriaViewController.swift */,
+				E64997CD252195B300CF5D47 /* TrainSelectionViewController.swift */,
 			);
 			path = Booking;
 			sourceTree = "<group>";
@@ -260,6 +273,11 @@
 				E6D37437251DEA79005C057E /* StationCardControl.swift */,
 				E6DE3A02251FA16100C80DFF /* SegmentControl.swift */,
 				E6DE3A05251FA1B300C80DFF /* SegmentedItemControl.swift */,
+				E64997D325219A1D00CF5D47 /* BackButton.swift */,
+				E64997D625219CFB00CF5D47 /* InteractivePopOverlayView.swift */,
+				E64997DF2521A3D800CF5D47 /* HeaderRouteInfomationView.swift */,
+				E64997E22521A3F600CF5D47 /* StationPairView.swift */,
+				E64997E52521A50500CF5D47 /* HeadlineLabelSetView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -384,6 +402,7 @@
 				E62C3CE5251D8400004243AE /* UIImage.swift in Sources */,
 				E6D3742F251DD22A005C057E /* InitialViewControllerAnimatedTransition.swift in Sources */,
 				E62C3CF5251D86A9004243AE /* DesignSystemViewController.swift in Sources */,
+				E64997E62521A50500CF5D47 /* HeadlineLabelSetView.swift in Sources */,
 				E62C3CE0251D8400004243AE /* UIDevice.swift in Sources */,
 				E62C3CE3251D8400004243AE /* String.swift in Sources */,
 				E62C3CDB251D8400004243AE /* UIColor.swift in Sources */,
@@ -393,12 +412,14 @@
 				E6D37438251DEA79005C057E /* StationCardControl.swift in Sources */,
 				E6DE3A09251FA59500C80DFF /* LayerStyle.swift in Sources */,
 				E62C3CE6251D8400004243AE /* DateFormatter.swift in Sources */,
+				E64997E02521A3D800CF5D47 /* HeaderRouteInfomationView.swift in Sources */,
 				E62C3CD9251D8400004243AE /* Array.swift in Sources */,
 				E6D37434251DE8DD005C057E /* HeadlineWithContainerView.swift in Sources */,
 				E62C3CE1251D8400004243AE /* Dictionary.swift in Sources */,
 				E62C3CE7251D8400004243AE /* Double.swift in Sources */,
 				E62C3CE8251D8400004243AE /* Optional.swift in Sources */,
 				E62C3CE2251D8400004243AE /* URL.swift in Sources */,
+				E64997E32521A3F600CF5D47 /* StationPairView.swift in Sources */,
 				E6DE3A0C251FA62000C80DFF /* ShadowStyle.swift in Sources */,
 				E62C3CD5251D8400004243AE /* Date.swift in Sources */,
 				E6628253251D7F5A00072621 /* InitialViewController.swift in Sources */,
@@ -406,8 +427,11 @@
 				E6DE3A03251FA16100C80DFF /* SegmentControl.swift in Sources */,
 				E662824F251D7F5A00072621 /* AppDelegate.swift in Sources */,
 				E62C3CDE251D8400004243AE /* NSMutableAttributedString.swift in Sources */,
+				E64997D425219A1D00CF5D47 /* BackButton.swift in Sources */,
 				E62C3CBA251D83E3004243AE /* Label.swift in Sources */,
 				E62C3CD7251D8400004243AE /* ViewController.swift in Sources */,
+				E64997D725219CFC00CF5D47 /* InteractivePopOverlayView.swift in Sources */,
+				E64997CE252195B300CF5D47 /* TrainSelectionViewController.swift in Sources */,
 				E62C3CDC251D8400004243AE /* Selector.swift in Sources */,
 				E62C3CDF251D8400004243AE /* UITableView.swift in Sources */,
 				E6628251251D7F5A00072621 /* SceneDelegate.swift in Sources */,

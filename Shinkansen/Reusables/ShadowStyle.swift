@@ -41,7 +41,24 @@ struct ShadowStyle {
         }
         
         static var disabled: ShadowStyle {
-            ShadowStyle(shadowOpacity: 0.08, shadowRadius: 1, shadowOffset: .init(width: 0, height: 1), shadowColor: .black)
+            ShadowStyle(shadowOpacity: 0.08, shadowRadius: 14, shadowOffset: .init(width: 0, height: 2), shadowColor: .black)
+        }
+    }
+    
+    enum segmentedItem {
+        
+        static var normal: ShadowStyle {
+            ShadowStyle(shadowOpacity: 0,
+                               shadowRadius: 0,
+                               shadowOffset: .init(width: 0, height: 0),
+                               shadowColor: .black)
+        }
+        
+        static var selected: ShadowStyle {
+            ShadowStyle(shadowOpacity: 0.12,
+                               shadowRadius: 10,
+                               shadowOffset: .init(width: 0, height: 5),
+                               shadowColor: .black)
         }
     }
 }

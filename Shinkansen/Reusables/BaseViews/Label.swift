@@ -28,6 +28,13 @@ final class Label: UILabel {
     }
     
     @IBInspectable
+    var isStrikethrough: Bool = false {
+        didSet {
+            styleText()
+        }
+    }
+    
+    @IBInspectable
     var isUnderlined: Bool = false {
         didSet {
             styleText()

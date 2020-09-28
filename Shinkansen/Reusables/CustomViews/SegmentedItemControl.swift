@@ -132,7 +132,7 @@ final class SegmentedItemControl: UIControl {
         heightConstraint.isActive = true
         
         contentView.addSubview(unselectedTitleLabel)
-        unselectedTitleLabel.edgeAnchors == contentView.edgeAnchors
+        unselectedTitleLabel.centerAnchors == contentView.centerAnchors
         
         let contentStackView = UIStackView([titleLabel, subtitleLabel],
                                            axis: .vertical,
@@ -141,7 +141,7 @@ final class SegmentedItemControl: UIControl {
                                            spacing: 2)
         
         contentView.addSubview(contentStackView)
-        contentStackView.edgeAnchors == contentView.edgeAnchors
+        contentStackView.centerAnchors == contentView.centerAnchors
     }
     
     private func layerStyle(by state: State) -> LayerStyle {
@@ -156,31 +156,26 @@ final class SegmentedItemControl: UIControl {
     }
     
     private func updateAppearance(animated: Bool = true) {
-        let contentViewOpacity = currentState == .highlighted ? 0.54 : 1
-//        contentView.layer.setAnimatedLayer(layerStyle(by: currentState)
-//            .withShadowStyle(ShadowStyle.noShadow)
-//            .withOpacity(contentViewOpacity),
-//                                           using: CABasicAnimationStyle.layerAnimationStyle)
-//        let transform = currentState == .highlighted ? DesignSystem.CATransform.highlighted : DesignSystem.CATransform.normal
-//        layer.setAnimatedLayer(layerStyle(by: currentState)
-//            .withTransform(transform),
-//                               using: CABasicAnimationStyle.layerAnimationStyle)
+        let shadowStyle = currentState == .selected ? ShadowStyle.segmentedItem.selected : ShadowStyle.segmentedItem.normal
+        UIView.animate(withDuration: 0.2) {
+            self.layer.setShadowStyle(shadowStyle)
+        }
         
         setLabelsToSelected(currentState == .selected, animated: animated)
         
     }
     
     public func setupTheme() {
+        titleLabel.font = .systemFont(ofSize: 16)
+        unselectedTitleLabel.font = .systemFont(ofSize: 16)
+        unselectedTitleLabel.isStrikethrough = true
+        subtitleLabel.font = .systemFont(ofSize: 10, weight: .medium)
         
-//        titleLabel.textStyle = textStyle.headline()
-//        unselectedTitleLabel.textStyle = textStyle.headline().strikethrough()
-//        subtitleLabel.textStyle = textStyle.caption2()
-//        
-//        titleLabel.textColor = currentColorTheme.componentColor.callToAction
-//        unselectedTitleLabel.textColor = currentColorTheme.componentColor.secondaryText
-//        subtitleLabel.textColor = currentColorTheme.componentColor.secondaryText
-//        
-//        heightConstraint?.constant = CGFloat(basedHeight).systemSizeMuliplier()
+        titleLabel.textColor = .primary
+        unselectedTitleLabel.textColor = .subtext
+        subtitleLabel.textColor = .subtext
+
+        heightConstraint?.constant = basedHeight
         
         updateAppearance(animated: false)
     }
@@ -189,6 +184,7 @@ final class SegmentedItemControl: UIControl {
         guard let contentSuperView = titleLabel.superview else { return }
         
         titleLabel.transform.ty = isSelected ? 0 : titleLabel.transform.ty
+        
         unselectedTitleLabel.transform.ty = isSelected ? unselectedTitleLabel.transform.ty : 0
         
         let titleLabelInContentViewFrame = contentSuperView
@@ -215,7 +211,7 @@ final class SegmentedItemControl: UIControl {
         }
         
         if animated {
-            UIView.animate(withStyle: .normalAnimationStyle, animations: action)
+            UIView.animate(withDuration: 0.2, animations: action)
         } else {
             action()
         }

@@ -15,6 +15,7 @@ final class StationCardControl: UIControl {
         UIView.animate(withDuration: 0.2) {
             self.alpha = 0.55
             self.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
+            self.layer.setShadowStyle(ShadowStyle.card.highlighted)
         }
     }
     
@@ -22,6 +23,7 @@ final class StationCardControl: UIControl {
         UIView.animate(withDuration: 0.2) {
             self.alpha = self.isHighlighted ? 0.54 : 1
             self.transform = self.isHighlighted ? CGAffineTransform(scaleX: 0.98, y: 0.98) : .identity
+            self.layer.setShadowStyle(ShadowStyle.card.normal)
         }
     }
     
@@ -78,7 +80,6 @@ final class StationCardControl: UIControl {
         
         contentView.addSubview(contentStackView)
         contentStackView.centerAnchors == contentView.centerAnchors
-        contentStackView.verticalAnchors == contentView.verticalAnchors + 7
         
         stationNameJPLabel.textAlignment = .center
         stationNameLabel.textAlignment = .center
@@ -90,17 +91,17 @@ final class StationCardControl: UIControl {
         contentView.layer.setLayerStyle(LayerStyle.card.normal)
     }
     
-    public func setupValue(stationNameJP: String? = nil,
+    func setupValue(stationNameJP: String? = nil,
                     stationName: String? = nil) {
         stationNameJPLabel.text = stationNameJP
         stationNameLabel.text = stationName
     }
     
-    public func setupTheme() {
+    func setupTheme() {
         heightConstraint.constant = basedHeight
         
         stationNameJPLabel.font = .systemFont(ofSize: 24)
-        stationNameLabel.font = .systemFont(ofSize: 14)
+        stationNameLabel.font = .systemFont(ofSize: 14, weight: .medium)
         
         stationNameJPLabel.textColor = .primary
         stationNameLabel.textColor = .primary

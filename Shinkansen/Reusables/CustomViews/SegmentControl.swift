@@ -61,10 +61,8 @@ final class SegmentedControl: UIControl {
     }
     
     private func setupView() {
-//        directionalLayoutMargins = DesignSystem.layoutMargins.segmentedControl()
-//        addSubview(stackView, withConstaintEquals: .marginEdges)
         addSubview(stackView)
-        stackView.edgeAnchors == edgeAnchors
+        stackView.edgeAnchors == edgeAnchors + 5
         
         stackView.distribution = .fillEqually
         stackView.spacing = 16
@@ -157,7 +155,7 @@ final class SegmentedControl: UIControl {
     }
     
     func setupTheme() {
-        layer.setLayerStyle(LayerStyle.segmentControl.normal)
+        layer.setLayerStyle(LayerStyle.segmentedControl.normal)
         stackView.arrangedSubviews.forEach { (segmentedItemControl) in
             guard let segmentedItemControl = segmentedItemControl as? SegmentedItemControl else { return }
             segmentedItemControl.setupTheme()
