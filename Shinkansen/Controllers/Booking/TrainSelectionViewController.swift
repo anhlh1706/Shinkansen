@@ -12,13 +12,5 @@ final class TrainSelectionViewController: BookingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backButton.addTarget(self,
-                             action: #selector(backButtonAction),
-                             for: .touchUpInside)
-    }
-    
-    @objc
-    func backButtonAction() {
-        navigationController?.popViewController(animated: true)
     }
 }

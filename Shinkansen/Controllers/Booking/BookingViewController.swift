@@ -87,7 +87,9 @@ class BookingViewController: UIViewController {
         backButton.leadingAnchor == dateLabel.leadingAnchor - 10
         
         backButton.tintColor = .primary
-        
+        backButton.addTarget(self,
+                             action: #selector(backButtonAction),
+                             for: .touchUpInside)
         
         // MARK: - Present header infomation
         guard let headerInformation = headerInformation else {
@@ -95,6 +97,13 @@ class BookingViewController: UIViewController {
         }
         dateLabel?.text = "\(headerInformation.dayOfWeek), \(headerInformation.date)"
         setupInteraction()
+        
+//        navigationController?.delegate = self
+    }
+    
+    @objc
+    func backButtonAction() {
+        navigationController?.popViewController(animated: true)
     }
     
     func setupInteraction() {

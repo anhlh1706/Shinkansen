@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		80A6E568DCC29C1EB73B98B9 /* Pods_Shinkansen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FEEEF015C06A53B2C1341D9 /* Pods_Shinkansen.framework */; };
+		E610E9992522C503003D947C /* ViewControllerAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610E9982522C503003D947C /* ViewControllerAnimatedTransitioning.swift */; };
+		E610E99C2522D23E003D947C /* TrainScheduleTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610E99B2522D23E003D947C /* TrainScheduleTableCell.swift */; };
+		E610E99F2522D298003D947C /* TouchableControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610E99E2522D298003D947C /* TouchableControl.swift */; };
 		E62C3CBA251D83E3004243AE /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62C3CB9251D83E3004243AE /* Label.swift */; };
 		E62C3CBD251D83ED004243AE /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62C3CBC251D83ED004243AE /* Button.swift */; };
 		E62C3CD5251D8400004243AE /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62C3CC0251D8400004243AE /* Date.swift */; };
@@ -59,6 +62,9 @@
 		0FEEEF015C06A53B2C1341D9 /* Pods_Shinkansen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shinkansen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B98B142A44FD9B4BBED493C /* Pods-Shinkansen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen.debug.xcconfig"; path = "Target Support Files/Pods-Shinkansen/Pods-Shinkansen.debug.xcconfig"; sourceTree = "<group>"; };
 		C40DE20DAE6CDFA840988628 /* Pods-Shinkansen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen.release.xcconfig"; path = "Target Support Files/Pods-Shinkansen/Pods-Shinkansen.release.xcconfig"; sourceTree = "<group>"; };
+		E610E9982522C503003D947C /* ViewControllerAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		E610E99B2522D23E003D947C /* TrainScheduleTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainScheduleTableCell.swift; sourceTree = "<group>"; };
+		E610E99E2522D298003D947C /* TouchableControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchableControl.swift; sourceTree = "<group>"; };
 		E62C3CB9251D83E3004243AE /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		E62C3CBC251D83ED004243AE /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		E62C3CC0251D8400004243AE /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -219,6 +225,8 @@
 				E64BCC9C251DAC8D009C036A /* BookingCriteriaViewController.swift */,
 				E64997CD252195B300CF5D47 /* TrainSelectionViewController.swift */,
 				E6CB6EE82521C24B0021CC70 /* BookingViewController.swift */,
+				E610E9982522C503003D947C /* ViewControllerAnimatedTransitioning.swift */,
+				E610E99B2522D23E003D947C /* TrainScheduleTableCell.swift */,
 			);
 			path = Booking;
 			sourceTree = "<group>";
@@ -275,8 +283,9 @@
 		E6D3743B251DEA7D005C057E /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				E6D37433251DE8DD005C057E /* HeadlineWithContainerView.swift */,
+				E610E99E2522D298003D947C /* TouchableControl.swift */,
 				E6D37437251DEA79005C057E /* StationCardControl.swift */,
+				E6D37433251DE8DD005C057E /* HeadlineWithContainerView.swift */,
 				E6DE3A02251FA16100C80DFF /* SegmentControl.swift */,
 				E6DE3A05251FA1B300C80DFF /* SegmentedItemControl.swift */,
 				E64997D325219A1D00CF5D47 /* BackButton.swift */,
@@ -409,6 +418,7 @@
 				E62C3CE5251D8400004243AE /* UIImage.swift in Sources */,
 				E6D3742F251DD22A005C057E /* InitialViewControllerAnimatedTransition.swift in Sources */,
 				E62C3CF5251D86A9004243AE /* DesignSystemViewController.swift in Sources */,
+				E610E9992522C503003D947C /* ViewControllerAnimatedTransitioning.swift in Sources */,
 				E64997E62521A50500CF5D47 /* VerticalLabelsStackView.swift in Sources */,
 				E62C3CE0251D8400004243AE /* UIDevice.swift in Sources */,
 				E62C3CE3251D8400004243AE /* String.swift in Sources */,
@@ -417,6 +427,7 @@
 				E6D37445251DEE3A005C057E /* CALayer.swift in Sources */,
 				E62C3CE4251D8400004243AE /* UserDefaults.swift in Sources */,
 				E6D37438251DEA79005C057E /* StationCardControl.swift in Sources */,
+				E610E99F2522D298003D947C /* TouchableControl.swift in Sources */,
 				E6DE3A09251FA59500C80DFF /* LayerStyle.swift in Sources */,
 				E62C3CE6251D8400004243AE /* DateFormatter.swift in Sources */,
 				E64997E02521A3D800CF5D47 /* HeaderRouteInfomationView.swift in Sources */,
@@ -439,6 +450,7 @@
 				E62C3CBA251D83E3004243AE /* Label.swift in Sources */,
 				E62C3CD7251D8400004243AE /* ViewController.swift in Sources */,
 				E64997D725219CFC00CF5D47 /* InteractivePopOverlayView.swift in Sources */,
+				E610E99C2522D23E003D947C /* TrainScheduleTableCell.swift in Sources */,
 				E64997CE252195B300CF5D47 /* TrainSelectionViewController.swift in Sources */,
 				E62C3CDC251D8400004243AE /* Selector.swift in Sources */,
 				E62C3CDF251D8400004243AE /* UITableView.swift in Sources */,
