@@ -8,24 +8,8 @@
 import UIKit
 import Anchorage
 
-final class StationCardControl: UIControl {
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
-        UIView.animate(withDuration: 0.2) {
-            self.alpha = 0.55
-            self.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
-            self.layer.setShadowStyle(ShadowStyle.card.highlighted)
-        }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        UIView.animate(withDuration: 0.2) {
-            self.alpha = self.isHighlighted ? 0.54 : 1
-            self.transform = self.isHighlighted ? CGAffineTransform(scaleX: 0.98, y: 0.98) : .identity
-            self.layer.setShadowStyle(ShadowStyle.card.normal)
-        }
-    }
+/// From Touchable Control, adding a stack of 2 labels to show kanji and latin name of station
+final class StationCardControl: TouchableControl {
     
     var basedHeight: CGFloat = 72 {
         didSet {
@@ -45,20 +29,15 @@ final class StationCardControl: UIControl {
     
     private var stationNameLabel: Label
     
-    var contentView: UIView
-    
     init(stationNameJP: String? = nil,
          stationName: String? = nil) {
         heightConstraint = NSLayoutConstraint()
         contentStackView = UIStackView()
         stationNameJPLabel = Label()
         stationNameLabel = Label()
-        contentView = UIView()
-        contentView.isUserInteractionEnabled = false
         contentStackView.isUserInteractionEnabled = false
         super.init(frame: .zero)
         setupView()
-        setupTheme()
         setupValue(stationNameJP: stationNameJP, stationName: stationName)
     }
     
@@ -67,16 +46,11 @@ final class StationCardControl: UIControl {
     }
     
     private func setupView() {
-        translatesAutoresizingMaskIntoConstraints = false
-        heightConstraint = heightAnchor.constraint(equalToConstant: basedHeight)
-        
+        heightConstraint = (heightAnchor == basedHeight)
         heightConstraint.isActive = true
+        
         contentStackView.spacing = 0
-        
         contentStackView.axis = .vertical
-        
-        addSubview(contentView)
-        contentView.edgeAnchors == edgeAnchors
         
         contentView.addSubview(contentStackView)
         contentStackView.centerAnchors == contentView.centerAnchors
@@ -89,15 +63,7 @@ final class StationCardControl: UIControl {
         contentStackView.alignment = .center
         contentView.backgroundColor = .background
         contentView.layer.setLayerStyle(LayerStyle.card.normal)
-    }
-    
-    func setupValue(stationNameJP: String? = nil,
-                    stationName: String? = nil) {
-        stationNameJPLabel.text = stationNameJP
-        stationNameLabel.text = stationName
-    }
-    
-    func setupTheme() {
+        
         heightConstraint.constant = basedHeight
         
         stationNameJPLabel.font = .systemFont(ofSize: 24)
@@ -105,5 +71,11 @@ final class StationCardControl: UIControl {
         
         stationNameJPLabel.textColor = .primary
         stationNameLabel.textColor = .primary
+    }
+    
+    func setupValue(stationNameJP: String? = nil,
+                    stationName: String? = nil) {
+        stationNameJPLabel.text = stationNameJP
+        stationNameLabel.text = stationName
     }
 }
