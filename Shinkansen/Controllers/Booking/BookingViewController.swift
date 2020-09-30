@@ -63,7 +63,7 @@ class BookingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .background
         // MARK: - PopOver
         interactivePopOverlayView = InteractivePopOverlayView()
         view.addSubview(interactivePopOverlayView)
@@ -97,8 +97,6 @@ class BookingViewController: UIViewController {
         }
         dateLabel?.text = "\(headerInformation.dayOfWeek), \(headerInformation.date)"
         setupInteraction()
-        
-//        navigationController?.delegate = self
     }
     
     @objc

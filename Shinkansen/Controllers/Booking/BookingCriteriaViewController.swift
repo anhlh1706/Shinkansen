@@ -153,7 +153,7 @@ final class BookingCriteriaViewController: BookingViewController {
         searchTicketButton.addTarget(self,action: #selector(searchAction), for: .touchUpInside)
         
         navigationController?.setNavigationBarHidden(true, animated: false)
-        backButton.alpha = 0
+        backButton.isHidden = true
     }
     
     @objc

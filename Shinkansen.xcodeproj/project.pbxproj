@@ -11,6 +11,7 @@
 		E610E9992522C503003D947C /* ViewControllerAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610E9982522C503003D947C /* ViewControllerAnimatedTransitioning.swift */; };
 		E610E99C2522D23E003D947C /* TrainScheduleTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610E99B2522D23E003D947C /* TrainScheduleTableCell.swift */; };
 		E610E99F2522D298003D947C /* TouchableControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610E99E2522D298003D947C /* TouchableControl.swift */; };
+		E610E9A42522E366003D947C /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610E9A32522E366003D947C /* NavigationController.swift */; };
 		E62C3CBA251D83E3004243AE /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62C3CB9251D83E3004243AE /* Label.swift */; };
 		E62C3CBD251D83ED004243AE /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62C3CBC251D83ED004243AE /* Button.swift */; };
 		E62C3CD5251D8400004243AE /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62C3CC0251D8400004243AE /* Date.swift */; };
@@ -65,6 +66,7 @@
 		E610E9982522C503003D947C /* ViewControllerAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		E610E99B2522D23E003D947C /* TrainScheduleTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainScheduleTableCell.swift; sourceTree = "<group>"; };
 		E610E99E2522D298003D947C /* TouchableControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchableControl.swift; sourceTree = "<group>"; };
+		E610E9A32522E366003D947C /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		E62C3CB9251D83E3004243AE /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		E62C3CBC251D83ED004243AE /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		E62C3CC0251D8400004243AE /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 		E64BCC9B251DAC79009C036A /* Booking */ = {
 			isa = PBXGroup;
 			children = (
+				E610E9A32522E366003D947C /* NavigationController.swift */,
 				E64BCC9C251DAC8D009C036A /* BookingCriteriaViewController.swift */,
 				E64997CD252195B300CF5D47 /* TrainSelectionViewController.swift */,
 				E6CB6EE82521C24B0021CC70 /* BookingViewController.swift */,
@@ -426,6 +429,7 @@
 				E62C3CDD251D8400004243AE /* UICollectionView.swift in Sources */,
 				E6D37445251DEE3A005C057E /* CALayer.swift in Sources */,
 				E62C3CE4251D8400004243AE /* UserDefaults.swift in Sources */,
+				E610E9A42522E366003D947C /* NavigationController.swift in Sources */,
 				E6D37438251DEA79005C057E /* StationCardControl.swift in Sources */,
 				E610E99F2522D298003D947C /* TouchableControl.swift in Sources */,
 				E6DE3A09251FA59500C80DFF /* LayerStyle.swift in Sources */,

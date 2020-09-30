@@ -126,7 +126,7 @@ private extension InitialViewController {
     
     @objc
     func start() {
-        let presentedViewController = UINavigationController(rootViewController: BookingCriteriaViewController())
+        let presentedViewController = NavigationController(rootViewController: BookingCriteriaViewController())
         presentedViewController.modalPresentationStyle = .fullScreen
         presentedViewController.transitioningDelegate = self
         
