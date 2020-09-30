@@ -45,6 +45,8 @@ final class BookingCriteriaViewController: BookingViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateLabel.isHidden = true
+        headerInfomationView.isHidden = true
         
         // MARK: - Setup logo section
         headlineLabel = Label()
@@ -154,6 +156,7 @@ final class BookingCriteriaViewController: BookingViewController {
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         backButton.isHidden = true
+        [contentView, tableView].forEach { $0?.isHidden = true }
     }
     
     @objc
@@ -163,9 +166,9 @@ final class BookingCriteriaViewController: BookingViewController {
         case 0:
             dateOffset = 0
         case 1:
-            dateOffset = 60 * 60 * 24
+            dateOffset = 86400 // tomorow
         default:
-            dateOffset = 60 * 60 * 24 * 2
+            dateOffset = 60 * 60 * 24 * 2 // next 2 days
         }
         
         let selectedDate = Date(timeIntervalSinceNow: dateOffset)
@@ -175,9 +178,9 @@ final class BookingCriteriaViewController: BookingViewController {
         case 0:
             timeOffset = 0
         case 1:
-            timeOffset = TimeInterval(60 * 60 * 6)
+            timeOffset = TimeInterval(21600) // next 6 hours
         default:
-            timeOffset = TimeInterval(60 * 60 * 12)
+            timeOffset = TimeInterval(43200) // next 12 hours
         }
         let trainSelectionVC = TrainSelectionViewController()
         

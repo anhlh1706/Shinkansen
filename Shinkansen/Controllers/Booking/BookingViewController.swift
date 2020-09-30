@@ -10,6 +10,11 @@ import Anchorage
 
 class BookingViewController: UIViewController {
     
+    enum MainViewType {
+        case tableView
+        case view
+    }
+    
     struct HeaderInformation {
         var dayOfWeek: String
         var date: String
@@ -40,6 +45,12 @@ class BookingViewController: UIViewController {
         }
     }
     
+    var mainViewType: MainViewType = .tableView {
+        didSet {
+            setVisibleMainView()
+        }
+    }
+    
     var isPopPerforming = false {
         didSet {
             if oldValue != isPopPerforming && isPopPerforming == true {
@@ -61,6 +72,10 @@ class BookingViewController: UIViewController {
     
     var interactivePopOverlayView: InteractivePopOverlayView!
     
+    var tableView: UITableView!
+    
+    var contentView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .background
@@ -73,14 +88,30 @@ class BookingViewController: UIViewController {
         backButton = BackButton()
         
         headerInfoStackView = UIStackView()
+        headerInfoStackView.spacing = 20
         dateLabel = Label(textAlignment: .center)
         dateLabel.font = .systemFont(ofSize: 18)
+        
+        headerInfomationView = HeaderRouteInformationView(fromStation: "Tokyo", toStation: "Osaka")
+        
         headerInfoStackView.addArrangedSubview(dateLabel)
+        headerInfoStackView.addArrangedSubview(headerInfomationView)
         
         view.addSubview(headerInfoStackView)
         headerInfoStackView.axis = .vertical
         headerInfoStackView.horizontalAnchors == view.horizontalAnchors + 15
         headerInfoStackView.topAnchor == view.safeAreaLayoutGuide.topAnchor + 12
+        
+        tableView = UITableView(frame: .zero, style: .plain)
+        view.addSubview(tableView)
+        tableView.horizontalAnchors == view.horizontalAnchors
+        tableView.bottomAnchor == view.bottomAnchor
+        tableView.topAnchor == headerInfoStackView.bottomAnchor
+        
+        contentView = UIView()
+        view.addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.frame = tableView.frame
         
         view.addSubview(backButton)
         backButton.centerYAnchor == dateLabel.centerYAnchor
@@ -97,6 +128,18 @@ class BookingViewController: UIViewController {
         }
         dateLabel?.text = "\(headerInformation.dayOfWeek), \(headerInformation.date)"
         setupInteraction()
+        setVisibleMainView()
+    }
+    
+    func setVisibleMainView() {
+        switch mainViewType {
+        case .tableView:
+            contentView.isHidden = true
+            tableView.isHidden = false
+        case .view:
+            contentView.isHidden = false
+            tableView.isHidden = true
+        }
     }
     
     @objc
@@ -184,5 +227,15 @@ class BookingViewController: UIViewController {
 //                                              className: headerInformation.className,
 //                                              seatNumber: headerInformation.seatNumber,
 //                                              price: headerInformation.price)
+    }
+}
+
+extension BookingViewController: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let verticalContentOffset = scrollView.contentOffset.y + scrollView.contentInset.top
+       
+        if !isPopPerforming {
+            headerInfomationView.verticalRubberBandEffect(byVerticalContentOffset: verticalContentOffset)
+        }
     }
 }
