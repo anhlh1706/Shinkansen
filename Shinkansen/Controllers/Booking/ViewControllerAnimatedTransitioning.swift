@@ -126,16 +126,20 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
         }
         
         // MARK: From Critial to Train
-        if let train = toViewController as? TrainSelectionViewController,
+        if let trainSelectionVC = toViewController as? TrainSelectionViewController,
             fromViewController is BookingCriteriaViewController {
-//
-//            trainSelectionVC.mainTableView.visibleCells.enumerated().forEach {
-//                (index, cell) in
-//                cell.translateAndFade(as: .transitionOut,
-//                                    animationStyle: animationStyle,
-//                                    percentageEndPoint: percentageEndPoint,
-//                                    translate: .init(x: 0, y: CGFloat(index) * 16))
-//            }
+
+            trainSelectionVC.tableView.translateAndFade(as: .transitionIn,
+                                                        animationStyle: animationStyle,
+                                                        percentageEndPoint: percentageEndPoint,
+                                                        translate: .init(x: 0, y: 72))
+            trainSelectionVC.tableView.visibleCells.enumerated().forEach {
+                (index, cell) in
+                cell.translateAndFade(as: .transitionIn,
+                                    animationStyle: animationStyle,
+                                    percentageEndPoint: percentageEndPoint,
+                                    translate: .init(x: 0, y: CGFloat(index) * 16))
+            }
         }
         
         // MARK: From TrainSelectionViewController backward
