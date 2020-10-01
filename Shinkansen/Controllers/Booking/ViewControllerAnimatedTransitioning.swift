@@ -125,12 +125,9 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
                                                                      translate: .init(x: 0, y: -16))
         }
         
-        // MARK: From Crit to Train
+        // MARK: From Critial to Train
         if let train = toViewController as? TrainSelectionViewController,
             fromViewController is BookingCriteriaViewController {
-//            train.dateLabel.translateAndFade(as: .transitionIn,
-//                                                                                                                  animationStyle: animationStyle,
-//                                                                                                                  percentageEndPoint: percentageEndPoint,                                    translate: .init(x: 0, y: 18))
 //
 //            trainSelectionVC.mainTableView.visibleCells.enumerated().forEach {
 //                (index, cell) in
@@ -143,18 +140,19 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
         
         // MARK: From TrainSelectionViewController backward
         if let trainSelectionVC = fromViewController as? TrainSelectionViewController,
-            toViewController is BookingCriteriaViewController {
-//            trainSelectionVC.dateLabel.translateAndFade(as: .transitionOut,
-//                                                                                                                  animationStyle: animationStyle,
-//                                                                                                                  percentageEndPoint: percentageEndPoint,                                    translate: .init(x: 0, y: 18))
-//
-//            trainSelectionVC.mainTableView.visibleCells.enumerated().forEach {
-//                (index, cell) in
-//                cell.translateAndFade(as: .transitionOut,
-//                                    animationStyle: animationStyle,
-//                                    percentageEndPoint: percentageEndPoint,
-//                                    translate: .init(x: 0, y: CGFloat(index) * 16))
-//            }
+           toViewController is BookingCriteriaViewController {
+            trainSelectionVC.tableView.translateAndFade(as: .transitionOut,
+                                                        animationStyle: animationStyle,
+                                                        percentageEndPoint: percentageEndPoint,
+                                                        translate: .init(x: 0, y: 72))
+            
+            trainSelectionVC.tableView.visibleCells.enumerated().forEach {
+                (index, cell) in
+                cell.translateAndFade(as: .transitionOut,
+                                      animationStyle: animationStyle,
+                                      percentageEndPoint: percentageEndPoint,
+                                      translate: .init(x: 0, y: CGFloat(index) * 16))
+            }
         }
         
         container.backgroundColor = toView.backgroundColor

@@ -107,6 +107,7 @@ class BookingViewController: UIViewController {
         tableView.horizontalAnchors == view.horizontalAnchors
         tableView.bottomAnchor == view.bottomAnchor
         tableView.topAnchor == headerInfoStackView.bottomAnchor
+        tableView.tableFooterView = UIView()
         
         contentView = UIView()
         view.addSubview(contentView)
