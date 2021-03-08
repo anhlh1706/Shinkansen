@@ -25,4 +25,11 @@ extension UIColor {
     static let subbackground = UIColor(named: "subbackground")!
     static let primary = UIColor(named: "primary")!
     static let textPlaceholder = UIColor(named: "textPlaceholder")!
+    static let appGray = UIColor(named: "gray")!
+    
+    enum seatClass {
+        static let granClass = UIColor(named: "seatClass.granClass")!
+        static let green = UIColor(named: "seatClass.green")!
+        static let ordinary = UIColor(named: "seatClass.ordinary")!
+    }
 }

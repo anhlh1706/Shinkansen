@@ -125,7 +125,7 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
                                                                      translate: .init(x: 0, y: -16))
         }
         
-        // MARK: From Critial to Train
+        // MARK: From Booking to Select Train
         if let trainSelectionVC = toViewController as? TrainSelectionViewController,
             fromViewController is BookingCriteriaViewController {
 
@@ -142,7 +142,7 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
             }
         }
         
-        // MARK: From TrainSelectionViewController backward
+        // MARK: From Select Train backward
         if let trainSelectionVC = fromViewController as? TrainSelectionViewController,
            toViewController is BookingCriteriaViewController {
             trainSelectionVC.tableView.translateAndFade(as: .transitionOut,

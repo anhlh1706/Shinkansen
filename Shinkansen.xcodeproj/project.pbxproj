@@ -35,6 +35,11 @@
 		E62C3CE8251D8400004243AE /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62C3CD3251D8400004243AE /* Optional.swift */; };
 		E62C3CEF251D855B004243AE /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E62C3CEE251D855B004243AE /* Colors.xcassets */; };
 		E62C3CF5251D86A9004243AE /* DesignSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62C3CF4251D86A9004243AE /* DesignSystemViewController.swift */; };
+		E64005FC25F21E0C005AC842 /* SeatMap.json in Resources */ = {isa = PBXBuildFile; fileRef = E64005F925F21E0B005AC842 /* SeatMap.json */; };
+		E64005FD25F21E0C005AC842 /* ModelData.json in Resources */ = {isa = PBXBuildFile; fileRef = E64005FA25F21E0C005AC842 /* ModelData.json */; };
+		E64005FE25F21E0C005AC842 /* TrainCriteria.json in Resources */ = {isa = PBXBuildFile; fileRef = E64005FB25F21E0C005AC842 /* TrainCriteria.json */; };
+		E640060225F2254A005AC842 /* TrainCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = E640060125F2254A005AC842 /* TrainCriteria.swift */; };
+		E640060625F225BC005AC842 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E640060525F225BC005AC842 /* Bundle.swift */; };
 		E64997CE252195B300CF5D47 /* TrainSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64997CD252195B300CF5D47 /* TrainSelectionViewController.swift */; };
 		E64997D425219A1D00CF5D47 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64997D325219A1D00CF5D47 /* BackButton.swift */; };
 		E64997D725219CFC00CF5D47 /* InteractivePopOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64997D625219CFB00CF5D47 /* InteractivePopOverlayView.swift */; };
@@ -47,6 +52,8 @@
 		E6628253251D7F5A00072621 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6628252251D7F5A00072621 /* InitialViewController.swift */; };
 		E6628258251D7F5B00072621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6628257251D7F5B00072621 /* Assets.xcassets */; };
 		E662825B251D7F5B00072621 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6628259251D7F5B00072621 /* LaunchScreen.storyboard */; };
+		E6CAC7B025F5D10E0047A465 /* Numberic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CAC7AF25F5D10E0047A465 /* Numberic.swift */; };
+		E6CAC7B325F5D4890047A465 /* SeatClassIconImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CAC7B225F5D4890047A465 /* SeatClassIconImageView.swift */; };
 		E6CB6EE92521C24B0021CC70 /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CB6EE82521C24B0021CC70 /* BookingViewController.swift */; };
 		E6CB6EEF2521DC600021CC70 /* AnimationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CB6EEE2521DC600021CC70 /* AnimationStyle.swift */; };
 		E6D3742F251DD22A005C057E /* InitialViewControllerAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D3742E251DD22A005C057E /* InitialViewControllerAnimatedTransition.swift */; };
@@ -90,6 +97,11 @@
 		E62C3CD3251D8400004243AE /* Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		E62C3CEE251D855B004243AE /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		E62C3CF4251D86A9004243AE /* DesignSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemViewController.swift; sourceTree = "<group>"; };
+		E64005F925F21E0B005AC842 /* SeatMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SeatMap.json; sourceTree = "<group>"; };
+		E64005FA25F21E0C005AC842 /* ModelData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ModelData.json; sourceTree = "<group>"; };
+		E64005FB25F21E0C005AC842 /* TrainCriteria.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TrainCriteria.json; sourceTree = "<group>"; };
+		E640060125F2254A005AC842 /* TrainCriteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainCriteria.swift; sourceTree = "<group>"; };
+		E640060525F225BC005AC842 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		E64997CD252195B300CF5D47 /* TrainSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainSelectionViewController.swift; sourceTree = "<group>"; };
 		E64997D325219A1D00CF5D47 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		E64997D625219CFB00CF5D47 /* InteractivePopOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivePopOverlayView.swift; sourceTree = "<group>"; };
@@ -104,6 +116,8 @@
 		E6628257251D7F5B00072621 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E662825A251D7F5B00072621 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E662825C251D7F5B00072621 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6CAC7AF25F5D10E0047A465 /* Numberic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numberic.swift; sourceTree = "<group>"; };
+		E6CAC7B225F5D4890047A465 /* SeatClassIconImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassIconImageView.swift; sourceTree = "<group>"; };
 		E6CB6EE82521C24B0021CC70 /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
 		E6CB6EEE2521DC600021CC70 /* AnimationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationStyle.swift; sourceTree = "<group>"; };
 		E6D3742E251DD22A005C057E /* InitialViewControllerAnimatedTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewControllerAnimatedTransition.swift; sourceTree = "<group>"; };
@@ -190,6 +204,8 @@
 				E62C3CD2251D8400004243AE /* Double.swift */,
 				E62C3CD3251D8400004243AE /* Optional.swift */,
 				E6D37444251DEE3A005C057E /* CALayer.swift */,
+				E640060525F225BC005AC842 /* Bundle.swift */,
+				E6CAC7AF25F5D10E0047A465 /* Numberic.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -206,6 +222,7 @@
 		E62C3CED251D854B004243AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E64005EE25F21D75005AC842 /* Jsons */,
 				E6628257251D7F5B00072621 /* Assets.xcassets */,
 				E62C3CEE251D855B004243AE /* Colors.xcassets */,
 				E6628259251D7F5B00072621 /* LaunchScreen.storyboard */,
@@ -219,6 +236,24 @@
 				E62C3CF4251D86A9004243AE /* DesignSystemViewController.swift */,
 			);
 			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		E64005EE25F21D75005AC842 /* Jsons */ = {
+			isa = PBXGroup;
+			children = (
+				E64005FA25F21E0C005AC842 /* ModelData.json */,
+				E64005F925F21E0B005AC842 /* SeatMap.json */,
+				E64005FB25F21E0C005AC842 /* TrainCriteria.json */,
+			);
+			path = Jsons;
+			sourceTree = "<group>";
+		};
+		E640060025F2253D005AC842 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E640060125F2254A005AC842 /* TrainCriteria.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		E64BCC9B251DAC79009C036A /* Booking */ = {
@@ -255,6 +290,7 @@
 		E662824D251D7F5A00072621 /* Shinkansen */ = {
 			isa = PBXGroup;
 			children = (
+				E640060025F2253D005AC842 /* Models */,
 				E62C3CEC251D853E004243AE /* Application */,
 				E62C3CED251D854B004243AE /* Resources */,
 				E62C3CB7251D83C5004243AE /* Reusables */,
@@ -296,6 +332,7 @@
 				E64997DF2521A3D800CF5D47 /* HeaderRouteInfomationView.swift */,
 				E64997E22521A3F600CF5D47 /* StationPairView.swift */,
 				E64997E52521A50500CF5D47 /* VerticalLabelsStackView.swift */,
+				E6CAC7B225F5D4890047A465 /* SeatClassIconImageView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -361,7 +398,10 @@
 			files = (
 				E62C3CEF251D855B004243AE /* Colors.xcassets in Resources */,
 				E662825B251D7F5B00072621 /* LaunchScreen.storyboard in Resources */,
+				E64005FD25F21E0C005AC842 /* ModelData.json in Resources */,
 				E6628258251D7F5B00072621 /* Assets.xcassets in Resources */,
+				E64005FC25F21E0C005AC842 /* SeatMap.json in Resources */,
+				E64005FE25F21E0C005AC842 /* TrainCriteria.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E62C3CBD251D83ED004243AE /* Button.swift in Sources */,
+				E640060625F225BC005AC842 /* Bundle.swift in Sources */,
 				E6CB6EE92521C24B0021CC70 /* BookingViewController.swift in Sources */,
 				E6DE3A06251FA1B300C80DFF /* SegmentedItemControl.swift in Sources */,
 				E64BCC9D251DAC8D009C036A /* BookingCriteriaViewController.swift in Sources */,
@@ -430,6 +471,7 @@
 				E6D37445251DEE3A005C057E /* CALayer.swift in Sources */,
 				E62C3CE4251D8400004243AE /* UserDefaults.swift in Sources */,
 				E610E9A42522E366003D947C /* NavigationController.swift in Sources */,
+				E6CAC7B325F5D4890047A465 /* SeatClassIconImageView.swift in Sources */,
 				E6D37438251DEA79005C057E /* StationCardControl.swift in Sources */,
 				E610E99F2522D298003D947C /* TouchableControl.swift in Sources */,
 				E6DE3A09251FA59500C80DFF /* LayerStyle.swift in Sources */,
@@ -449,6 +491,8 @@
 				E62C3CD6251D8400004243AE /* UIView.swift in Sources */,
 				E6DE3A03251FA16100C80DFF /* SegmentControl.swift in Sources */,
 				E662824F251D7F5A00072621 /* AppDelegate.swift in Sources */,
+				E640060225F2254A005AC842 /* TrainCriteria.swift in Sources */,
+				E6CAC7B025F5D10E0047A465 /* Numberic.swift in Sources */,
 				E62C3CDE251D8400004243AE /* NSMutableAttributedString.swift in Sources */,
 				E64997D425219A1D00CF5D47 /* BackButton.swift in Sources */,
 				E62C3CBA251D83E3004243AE /* Label.swift in Sources */,
@@ -600,7 +644,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KK338VVZ82;
+				DEVELOPMENT_TEAM = G5XRG6XD8F;
 				INFOPLIST_FILE = Shinkansen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

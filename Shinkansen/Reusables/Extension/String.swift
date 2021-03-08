@@ -30,7 +30,8 @@ extension String {
     
     var standardlized: String {
         return components(separatedBy: .whitespacesAndNewlines)
-            .filter({ !$0.isEmpty }).joined(separator: " ")
+            .filter(\.isEmpty)
+            .joined(separator: " ")
     }
     
     static func className(_ aClass: AnyClass) -> String {

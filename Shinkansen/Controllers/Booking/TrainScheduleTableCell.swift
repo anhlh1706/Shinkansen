@@ -58,6 +58,7 @@ final class TrainScheduleTableViewCell: UITableViewCell {
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         
+        contentView.addSubview(touchableView)
         touchableView.edgeAnchors == edgeAnchors + UIEdgeInsets(top: 4, left: 15, bottom: 12, right: 15)
         
 //        let seatClassStackView = UIStackView([granClassIconImageView,
