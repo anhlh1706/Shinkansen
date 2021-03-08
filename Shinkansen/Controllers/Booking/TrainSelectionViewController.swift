@@ -16,14 +16,14 @@ final class TrainSelectionViewController: BookingViewController {
     
     var trainCriteria: TrainCriteria? {
         didSet {
-            let now = Date()
+//            let now = Date()
             trainSchedules = trainCriteria?.trainSchedules ?? []
-//            trainSchedules = (trainCriteria?.trainSchedules ?? []).filter {
-//                let component = Calendar.current.dateComponents(in: TimeZone(identifier: "JST")!, from: $0.fromTime)
-//                let date = Date(byHourOf: component.hour, minute: component.minute, second: component.second).addingTimeInterval(dateOffset + timeOffset)
-//                return now < date
-//            }
-//            tableView.reloadData()
+////            trainSchedules = (trainCriteria?.trainSchedules ?? []).filter {
+////                let component = Calendar.current.dateComponents(in: TimeZone(identifier: "JST")!, from: $0.fromTime)
+////                let date = Date(byHourOf: component.hour, minute: component.minute, second: component.second).addingTimeInterval(dateOffset + timeOffset)
+////                return now < date
+////            }
+            tableView.reloadData()
         }
     }
     
@@ -33,6 +33,7 @@ final class TrainSelectionViewController: BookingViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(cell: TrainScheduleTableViewCell.self)
@@ -47,31 +48,31 @@ final class TrainSelectionViewController: BookingViewController {
             if case .success(let train) = result {
                 trainCriteria = train
                 
-                tableView.visibleCells.enumerated().forEach { (index, cell) in
-                    guard let cell = cell as? TrainScheduleTableViewCell else { return }
-                    cell.preparePropertiesForAnimation()
-                    cell.transform.ty = 24 * CGFloat(index)
-                    var animationStyle = UIViewAnimationStyle.transitionAnimationStyle
-                    animationStyle.duration = 0.05 * TimeInterval(index) + 0.5
-                    UIView.animate(withStyle: animationStyle, animations: {
-                        cell.setPropertiesToIdentity()
-                        cell.transform.ty = 0
-                    })
+                
+                DispatchQueue.main.async { [self] in
+                    tableView.visibleCells.enumerated().forEach { (index, cell) in
+                        guard let cell = cell as? TrainScheduleTableViewCell else { return }
+                        cell.preparePropertiesForAnimation()
+                        cell.transform.ty = 24 * CGFloat(index)
+                        
+                        let duration = 0.05 * TimeInterval(index) + 0.5
+                        var animationStyle = UIViewAnimationStyle.transitionAnimationStyle
+                        animationStyle.duration = duration
+                        
+                        UIView.animate(withStyle: animationStyle, animations: {
+                            cell.transform.ty = 0
+                            cell.contentView.alpha = 1
+                            
+                            UIView.animate(withDuration: duration, delay: 0.2, options: .curveEaseIn, animations: {
+                                cell.setPropertiesToIdentity()
+                            }, completion: nil)
+                        })
+                        
+                        
+                    }
                 }
                 tableView.isUserInteractionEnabled = true
                 loadingView.stopAnimating()
-                
-                /// Check if there is no result
-                if tableView.visibleCells.count == 0 {
-                    let label = Label()
-                    label.numberOfLines = 0
-                    label.text = "No train scheduled in the time range you selected"
-                    label.font = .systemFont(ofSize: 22)
-                    label.textColor = .secondaryLabel
-                    label.textAlignment = .center
-                    tableView.addSubview(label)
-                    label.edgeAnchors == tableView.edgeAnchors + 24
-                }
             }
         }
     }
@@ -95,10 +96,9 @@ extension TrainSelectionViewController: UITableViewDataSource {
             $0.seatClass == .ordinary
         })
         
-        let availableObjects = [granClassObject, greenObject, ordinaryObject].compactMap({$0})
-        let cheapestPrice = availableObjects.sorted(by: { (classL, classR) -> Bool in
-            return classL.price < classR.price
-        }).first?.price
+        let availableObjects = [granClassObject, greenObject, ordinaryObject].compactMap { $0 }
+        
+        let cheapestPrice = availableObjects.map { $0.price }.min()
         
         // MARK: Offset of time is only for a sake of mock data
         let fromTimeString = trainSchedule.fromTime.addingTimeInterval(timeOffset).time

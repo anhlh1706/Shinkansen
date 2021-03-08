@@ -60,13 +60,12 @@ final class VerticalLabelsStackView: UIStackView {
     
     func setupTheme() {
         titleLabel.textColor = .text
-        subtitleLabel.textColor = type == .regular ? .text : .subtext
+        subtitleLabel.textColor = .subtext
         
-        let headerSize: CGFloat = type == .regular ? 34 : 16
-        let subSize: CGFloat = type == .small ? 16 : 12
+        let headerSize: CGFloat = type == .regular ? 16 : 13
         
-        titleLabel.font = .systemFont(ofSize: headerSize, weight: .light)
-        subtitleLabel.font = .systemFont(ofSize: subSize)
+        titleLabel.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: .systemFont(ofSize: headerSize, weight: .regular))
+        subtitleLabel.font = UIFontMetrics(forTextStyle: .caption2).scaledFont(for: .systemFont(ofSize: 10, weight: .medium))
         spacing = 3
         setTextAlignment()
     }

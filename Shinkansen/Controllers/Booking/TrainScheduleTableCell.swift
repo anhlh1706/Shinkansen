@@ -12,9 +12,9 @@ final class TrainScheduleTableViewCell: UITableViewCell {
     var touchableView: TouchableControl
     var timeLabelSetView: VerticalLabelsStackView
     var trainLabelSetView: VerticalLabelsStackView
-//    var granClassIconImageView: SeatClassIconImageView
-//    var greenIconImageView: SeatClassIconImageView
-//    var ordinaryIconImageView: SeatClassIconImageView
+    var granClassIconImageView: SeatClassIconImageView
+    var greenIconImageView: SeatClassIconImageView
+    var ordinaryIconImageView: SeatClassIconImageView
     var priceLabel: Label
     var classIconStackView: UIStackView
     var trainImageView: UIImageView
@@ -28,15 +28,17 @@ final class TrainScheduleTableViewCell: UITableViewCell {
         touchableView = TouchableControl()
         timeLabelSetView = VerticalLabelsStackView()
         trainLabelSetView = VerticalLabelsStackView()
-        timeLabelSetView.type = .small
-        trainLabelSetView.type = .small
         
-//        granClassIconImageView = SeatClassIconImageView(seatClass: .granClass,
-//                                                        iconSize: .small)
-//        greenIconImageView = SeatClassIconImageView(seatClass: .green,
-//                                                    iconSize: .small)
-//        ordinaryIconImageView = SeatClassIconImageView(seatClass: .ordinary,
-//                                                       iconSize: .small)
+        timeLabelSetView.type = .regular
+        trainLabelSetView.type = .small
+        trainLabelSetView.textAlignment = .right
+        
+        granClassIconImageView = SeatClassIconImageView(seatClass: .granClass,
+                                                        iconSize: .small)
+        greenIconImageView = SeatClassIconImageView(seatClass: .green,
+                                                    iconSize: .small)
+        ordinaryIconImageView = SeatClassIconImageView(seatClass: .ordinary,
+                                                       iconSize: .small)
         priceLabel = Label()
         classIconStackView = UIStackView()
         trainImageView = UIImageView()
@@ -59,34 +61,34 @@ final class TrainScheduleTableViewCell: UITableViewCell {
         backgroundColor = .clear
         
         contentView.addSubview(touchableView)
-        touchableView.edgeAnchors == edgeAnchors + UIEdgeInsets(top: 4, left: 15, bottom: 12, right: 15)
+        touchableView.edgeAnchors == contentView.edgeAnchors + UIEdgeInsets(top: 4, left: 15, bottom: 12, right: 15)
         
-//        let seatClassStackView = UIStackView([granClassIconImageView,
-//                                              greenIconImageView,
-//                                              ordinaryIconImageView], distribution: .fill, alignment: .fill, spacing: 8)
+        let seatClassStackView = UIStackView([granClassIconImageView,
+                                              greenIconImageView,
+                                              ordinaryIconImageView], distribution: .fill, alignment: .fill, spacing: 8)
         
-//        let seatClassAndPriceStackView = UIStackView([seatClassStackView, priceLabel],
-//                                                     axis: .vertical,
-//                                                     distribution: .fill, alignment: .leading, spacing: 4)
+        let seatClassAndPriceStackView = UIStackView([seatClassStackView, priceLabel],
+                                                     axis: .vertical,
+                                                     distribution: .fill, alignment: .leading, spacing: 4)
         
         let headerTextDetailStackView = UIStackView([timeLabelSetView, trainLabelSetView],
                                                     axis: .horizontal,
                                                     distribution: .equalSpacing,
                                                     alignment: .top)
         
-        let verticalStackView = UIStackView([headerTextDetailStackView],
+        let verticalStackView = UIStackView([headerTextDetailStackView, seatClassAndPriceStackView],
                                             axis: .vertical,
                                             distribution: .fill,
                                             alignment: .fill,
                                             spacing: 24)
         
         touchableView.contentView.addSubview(verticalStackView)
-        verticalStackView.edgeAnchors == touchableView.contentView.edgeAnchors
+        verticalStackView.edgeAnchors == touchableView.contentView.edgeAnchors + 16
         
         touchableView.contentView.addSubview(trainImageView)
-        trainImageView.bottomAnchor == touchableView.contentView.bottomAnchor
+        trainImageView.bottomAnchor == touchableView.contentView.bottomAnchor - 16
         
-//        trainImageView.topAnchor.constraint(equalTo: headerTextDetailStackView.bottomAnchor, constant: 8).isActive = true
+        trainImageView.topAnchor == headerTextDetailStackView.bottomAnchor + 8
         
         touchableView.centerXAnchor == trainImageView.leadingAnchor + 32
         trainImageView.widthAnchor == trainImageView.heightAnchor * 6
@@ -100,11 +102,11 @@ final class TrainScheduleTableViewCell: UITableViewCell {
     public func setupTheme() {
         timeLabelSetView.setupTheme()
         trainLabelSetView.setupTheme()
-//        granClassIconImageView.setupTheme()
-//        greenIconImageView.setupTheme()
-//        ordinaryIconImageView.setupTheme()
-//        priceLabel.textStyle = textStyle.caption2()
-//        priceLabel.textColor = currentColorTheme.componentColor.secondaryText
+        granClassIconImageView.setupTheme()
+        greenIconImageView.setupTheme()
+        ordinaryIconImageView.setupTheme()
+        priceLabel.font = .systemFont(ofSize: 13, weight: .medium)
+        priceLabel.textColor = .subtext
     }
     
     public func setupValue(time: String,
@@ -120,15 +122,15 @@ final class TrainScheduleTableViewCell: UITableViewCell {
                            price: String? = nil,
                            trainImage: UIImage? = nil) {
         timeLabelSetView.setupValue(title: time, subtitle: amountOfTime)
-//        trainLabelSetView.setupValue(title: trainNumber, subtitle: trainName)
-//        granClassIconImageView.isHidden = !showGranClassIcon
-//        granClassIconImageView.isAvailable = isGranClassAvailable
-//
-//        greenIconImageView.isHidden = !showGreenIcon
-//        greenIconImageView.isAvailable = isGreenAvailable
-//
-//        ordinaryIconImageView.isHidden = !showOrdinaryIcon
-//        ordinaryIconImageView.isAvailable = isOrdinaryAvailable
+        trainLabelSetView.setupValue(title: trainNumber ?? "", subtitle: trainName)
+        granClassIconImageView.isHidden = !showGranClassIcon
+        granClassIconImageView.isAvailable = isGranClassAvailable
+
+        greenIconImageView.isHidden = !showGreenIcon
+        greenIconImageView.isAvailable = isGreenAvailable
+
+        ordinaryIconImageView.isHidden = !showOrdinaryIcon
+        ordinaryIconImageView.isAvailable = isOrdinaryAvailable
         priceLabel.text = price
         
         trainImageView.image = trainImage

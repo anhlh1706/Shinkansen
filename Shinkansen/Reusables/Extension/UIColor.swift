@@ -20,7 +20,7 @@ extension UIColor {
 
 extension UIColor {
     static let text = UIColor(named: "text")!
-    static let subtext = UIColor(named: "subtext")!
+    static let subtext = UIColor(named: "gray")!
     static let background = UIColor(named: "background")!
     static let subbackground = UIColor(named: "subbackground")!
     static let primary = UIColor(named: "primary")!

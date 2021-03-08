@@ -42,10 +42,12 @@ class TouchableControl: UIControl {
     }
     
     private func setupView() {
+        contentView.clipsToBounds = true
         addSubview(contentView)
         contentView.edgeAnchors == edgeAnchors
         
         contentView.backgroundColor = .background
         contentView.layer.setLayerStyle(LayerStyle.card.normal)
+        layer.setLayerStyle(LayerStyle.card.normal)
     }
 }

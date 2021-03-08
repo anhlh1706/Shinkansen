@@ -10,7 +10,7 @@ import Foundation
 extension Bundle {
     
     func decode<T: Decodable>(fileName: String, type: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
-        guard let path = Bundle.main.path(forResource: fileName, ofType: "json") else {
+        guard let path = path(forResource: fileName, ofType: "json") else {
             return
         }
         
