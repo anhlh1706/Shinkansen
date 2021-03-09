@@ -28,7 +28,7 @@ final class SegmentedItemControl: UIControl {
         }
     }
     
-    public var contentView: UIView
+    var contentView: UIView
     
     override var isEnabled: Bool {
         didSet {
@@ -164,7 +164,7 @@ final class SegmentedItemControl: UIControl {
         
     }
     
-    public func setupTheme() {
+    func setupTheme() {
         titleLabel.font = .systemFont(ofSize: 16)
         unselectedTitleLabel.font = .systemFont(ofSize: 16)
         unselectedTitleLabel.isStrikethrough = currentState == .disabled

@@ -50,13 +50,13 @@ final class HeaderRouteInformationView: UIStackView {
 //        addArrangedSubview(descriptionSetView)
     }
     
-    public func setupTheme() {
+    func setupTheme() {
         stationPairView.setupTheme()
 //        descriptionSetView.setupTheme()
         spacing = 24
     }
     
-    public func setupValue(fromStation: String, fromTime: String? = nil,
+    func setupValue(fromStation: String, fromTime: String? = nil,
                           toStation: String, toTime: String? = nil,
                           trainNumber: String? = nil,
                           trainName: String? = nil,
@@ -78,7 +78,7 @@ final class HeaderRouteInformationView: UIStackView {
 //            carNumber == nil && className == nil && seatNumber == nil && price == nil
     }
     
-    public func verticalRubberBandEffect(byVerticalContentOffset contentOffsetY: CGFloat) {
+    func verticalRubberBandEffect(byVerticalContentOffset contentOffsetY: CGFloat) {
         
         // To filter only negative offset otherwise there will have no effect
         guard contentOffsetY < 0 else {

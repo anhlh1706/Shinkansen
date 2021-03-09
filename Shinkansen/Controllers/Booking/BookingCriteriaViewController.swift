@@ -195,8 +195,8 @@ final class BookingCriteriaViewController: BookingViewController {
                               date: date,
                               fromStation: fromStation,
                               toStation: toStation)
-//        trainSelectionVC.dateOffset = dateOffset
-//        trainSelectionVC.timeOffset = timeOffset
+        trainSelectionVC.dateOffset = dateOffset
+        trainSelectionVC.timeOffset = timeOffset
         navigationController?.pushViewController(trainSelectionVC, animated: true)
     }
     

@@ -93,12 +93,12 @@ final class SeatClassIconImageView: UIImageView {
         image = seatClass.iconImage()
     }
     
-    public func setupTheme() {
+    func setupTheme() {
         tintColor = isAvailable ? seatClass.color() : .appGray
         alpha = isAvailable ? 1 : 0.54
     }
     
-    public func setSeatClass(to seatClass: SeatClassType) {
+    func setSeatClass(to seatClass: SeatClassType) {
         self.seatClass = seatClass
     }
 }

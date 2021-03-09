@@ -16,13 +16,7 @@ final class TrainSelectionViewController: BookingViewController {
     
     var trainCriteria: TrainCriteria? {
         didSet {
-//            let now = Date()
             trainSchedules = trainCriteria?.trainSchedules ?? []
-////            trainSchedules = (trainCriteria?.trainSchedules ?? []).filter {
-////                let component = Calendar.current.dateComponents(in: TimeZone(identifier: "JST")!, from: $0.fromTime)
-////                let date = Date(byHourOf: component.hour, minute: component.minute, second: component.second).addingTimeInterval(dateOffset + timeOffset)
-////                return now < date
-////            }
             tableView.reloadData()
         }
     }
@@ -82,40 +76,7 @@ final class TrainSelectionViewController: BookingViewController {
 extension TrainSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cell: TrainScheduleTableViewCell.self, indexPath: indexPath)
-         let trainSchedule = trainSchedules[indexPath.row]
-            
-        let granClassObject = trainSchedule.seatClasses.first(where: {
-            $0.seatClass == .granClass
-        })
-        
-        let greenObject = trainSchedule.seatClasses.first(where: {
-            $0.seatClass == .green
-        })
-        
-        let ordinaryObject = trainSchedule.seatClasses.first(where: {
-            $0.seatClass == .ordinary
-        })
-        
-        let availableObjects = [granClassObject, greenObject, ordinaryObject].compactMap { $0 }
-        
-        let cheapestPrice = availableObjects.map { $0.price }.min()
-        
-        // MARK: Offset of time is only for a sake of mock data
-        let fromTimeString = trainSchedule.fromTime.addingTimeInterval(timeOffset).time
-        let toTimeString = trainSchedule.toTime.addingTimeInterval(timeOffset).time
-        cell.setupValue(time: "\(fromTimeString) – \(toTimeString)",
-            amountOfTime: trainSchedule.toTime.offset(from: trainSchedule.fromTime),
-            trainNumber: trainSchedule.trainNumber,
-            trainName: trainSchedule.trainName,
-            showGranClassIcon: granClassObject != nil,
-            isGranClassAvailable: granClassObject?.isAvailable ?? false,
-            showGreenIcon: greenObject != nil,
-            isGreenAvailable: greenObject?.isAvailable ?? false,
-            showOrdinaryIcon: ordinaryObject != nil,
-            isOrdinaryAvailable: ordinaryObject?.isAvailable ?? false,
-            price: "from \(cheapestPrice?.yen ?? "-")",
-            trainImage: UIImage(named: trainSchedule.trainImageName))
-        
+        cell.setup(trainSchedule: trainSchedules[indexPath.row], timeOffset: timeOffset)
         return cell
     }
     

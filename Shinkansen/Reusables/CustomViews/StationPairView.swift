@@ -40,14 +40,17 @@ final class StationPairView: UIStackView {
         toLabel.textAlignment = .center
     }
     
-    public func setupTheme() {
+    func setupTheme() {
         fromStationHeadlineView.setupTheme()
         toStationHeadlineView.setupTheme()
         toLabel.textColor = .subtext
         toLabel.font = .systemFont(ofSize: 16)
+        
+        fromStationHeadlineView.titleLabel.font = .systemFont(ofSize: 28)
+        toStationHeadlineView.titleLabel.font = .systemFont(ofSize: 28)
     }
     
-    public func setupValue(fromStation: String, fromTime: String? = nil,
+    func setupValue(fromStation: String, fromTime: String? = nil,
                           toStation: String, toTime: String? = nil) {
         fromStationHeadlineView.setupValue(title: fromStation, subtitle: fromTime)
         toStationHeadlineView.setupValue(title: toStation, subtitle: toTime)

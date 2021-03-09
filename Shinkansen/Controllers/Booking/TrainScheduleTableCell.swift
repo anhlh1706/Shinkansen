@@ -99,7 +99,7 @@ final class TrainScheduleTableViewCell: UITableViewCell {
         trainImageView.image = nil
     }
     
-    public func setupTheme() {
+    func setupTheme() {
         timeLabelSetView.setupTheme()
         trainLabelSetView.setupTheme()
         granClassIconImageView.setupTheme()
@@ -109,39 +109,51 @@ final class TrainScheduleTableViewCell: UITableViewCell {
         priceLabel.textColor = .subtext
     }
     
-    public func setupValue(time: String,
-                           amountOfTime: String? = nil,
-                           trainNumber: String? = nil,
-                           trainName: String? = nil,
-                           showGranClassIcon: Bool = true,
-                           isGranClassAvailable: Bool = true,
-                           showGreenIcon: Bool = true,
-                           isGreenAvailable: Bool = true,
-                           showOrdinaryIcon: Bool = true,
-                           isOrdinaryAvailable: Bool = true,
-                           price: String? = nil,
-                           trainImage: UIImage? = nil) {
-        timeLabelSetView.setupValue(title: time, subtitle: amountOfTime)
-        trainLabelSetView.setupValue(title: trainNumber ?? "", subtitle: trainName)
-        granClassIconImageView.isHidden = !showGranClassIcon
-        granClassIconImageView.isAvailable = isGranClassAvailable
-
-        greenIconImageView.isHidden = !showGreenIcon
-        greenIconImageView.isAvailable = isGreenAvailable
-
-        ordinaryIconImageView.isHidden = !showOrdinaryIcon
-        ordinaryIconImageView.isAvailable = isOrdinaryAvailable
-        priceLabel.text = price
+    func setup(trainSchedule: TrainSchedule, timeOffset: TimeInterval) {
+        let granClassObject = trainSchedule.seatClasses.first(where: {
+            $0.seatClass == .granClass
+        })
         
-        trainImageView.image = trainImage
+        let greenObject = trainSchedule.seatClasses.first(where: {
+            $0.seatClass == .green
+        })
+        
+        let ordinaryObject = trainSchedule.seatClasses.first(where: {
+            $0.seatClass == .ordinary
+        })
+        
+        let availableObjects = [granClassObject, greenObject, ordinaryObject].compactMap { $0 }
+        
+        let cheapestPrice = availableObjects.map { $0.price }.min()
+        
+        // MARK: Offset of time is only for a sake of mock data
+        let fromTimeString = trainSchedule.fromTime.addingTimeInterval(timeOffset).time
+        let toTimeString = trainSchedule.toTime.addingTimeInterval(timeOffset).time
+        
+        let time = "\(fromTimeString) – \(toTimeString)"
+        let amountOfTime = trainSchedule.toTime.offset(from: trainSchedule.fromTime)
+        
+        timeLabelSetView.setupValue(title: time, subtitle: amountOfTime)
+        trainLabelSetView.setupValue(title: trainSchedule.trainNumber , subtitle: trainSchedule.trainName)
+        granClassIconImageView.isHidden = granClassObject == nil
+        granClassIconImageView.isAvailable = granClassObject?.isAvailable ?? false
+
+        greenIconImageView.isHidden = greenObject == nil
+        greenIconImageView.isAvailable = greenObject?.isAvailable ?? false
+
+        ordinaryIconImageView.isHidden = ordinaryObject == nil
+        ordinaryIconImageView.isAvailable = ordinaryObject?.isAvailable ?? false
+        priceLabel.text = "from \(cheapestPrice?.yen ?? "-")"
+        
+        trainImageView.image = UIImage(named: trainSchedule.trainImageName)
     }
     
-    public func preparePropertiesForAnimation() {
+    func preparePropertiesForAnimation() {
         contentView.alpha = 0
         trainImageView.transform.tx = trainImageView.bounds.width
     }
     
-    public func setPropertiesToIdentity() {
+    func setPropertiesToIdentity() {
         contentView.alpha = 1
         trainImageView.transform.tx = 0
     }
