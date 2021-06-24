@@ -38,39 +38,35 @@ final class TrainSelectionViewController: BookingViewController {
         tableView.addSubview(loadingView)
         loadingView.edgeAnchors == tableView.edgeAnchors
         
-        Bundle.main.decode(fileName: "TrainCriteria", type: TrainCriteria.self) { [self] result in
-            if case .success(let train) = result {
-                trainCriteria = train
+        guard let train = try? Bundle.main.decode(fileName: "TrainCriteria", type: TrainCriteria.self) else {
+            return
+        }
+        trainCriteria = train
+        
+        DispatchQueue.main.async { [self] in
+            tableView.visibleCells.enumerated().forEach { (index, cell) in
+                guard let cell = cell as? TrainScheduleTableViewCell else { return }
+                cell.preparePropertiesForAnimation()
+                cell.transform.ty = 24 * CGFloat(index)
                 
+                let duration = 0.05 * TimeInterval(index) + 0.5
+                var animationStyle = UIViewAnimationStyle.transitionAnimationStyle
+                animationStyle.duration = duration
                 
-                DispatchQueue.main.async { [self] in
-                    tableView.visibleCells.enumerated().forEach { (index, cell) in
-                        guard let cell = cell as? TrainScheduleTableViewCell else { return }
-                        cell.preparePropertiesForAnimation()
-                        cell.transform.ty = 24 * CGFloat(index)
-                        
-                        let duration = 0.05 * TimeInterval(index) + 0.5
-                        var animationStyle = UIViewAnimationStyle.transitionAnimationStyle
-                        animationStyle.duration = duration
-                        
-                        UIView.animate(withStyle: animationStyle, animations: {
-                            cell.transform.ty = 0
-                            cell.contentView.alpha = 1
-                            
-                            UIView.animate(withDuration: duration, delay: 0.2, options: .curveEaseIn, animations: {
-                                cell.setPropertiesToIdentity()
-                            }, completion: nil)
-                        })
-                        
-                        
-                    }
-                }
-                tableView.isUserInteractionEnabled = true
-                loadingView.stopAnimating()
+                UIView.animate(withStyle: animationStyle, animations: {
+                    cell.transform.ty = 0
+                    cell.contentView.alpha = 1
+                    
+                    UIView.animate(withDuration: duration, delay: 0.2, options: .curveEaseIn, animations: {
+                        cell.setPropertiesToIdentity()
+                    }, completion: nil)
+                })
+            
             }
+            tableView.isUserInteractionEnabled = true
+            loadingView.stopAnimating()
         }
     }
-    
 }
 
 extension TrainSelectionViewController: UITableViewDataSource {

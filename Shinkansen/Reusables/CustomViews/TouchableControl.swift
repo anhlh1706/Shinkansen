@@ -1,6 +1,6 @@
 //
 //  TouchableControl.swift
-//  Shinkansen
+//  Base
 //
 //  Created by Lê Hoàng Anh on 29/09/2020.
 //
@@ -13,18 +13,18 @@ class TouchableControl: UIControl {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
-        UIView.animate(withDuration: 0.2) {
-            self.alpha = 0.55
-            self.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
-            self.layer.setShadowStyle(ShadowStyle.card.highlighted)
+        UIView.animate(withDuration: 0.2) { [self] in
+            alpha = 0.55
+            transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
+            layer.setShadowStyle(ShadowStyle.card.highlighted)
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        UIView.animate(withDuration: 0.2) {
-            self.alpha = self.isHighlighted ? 0.54 : 1
-            self.transform = self.isHighlighted ? CGAffineTransform(scaleX: 0.98, y: 0.98) : .identity
-            self.layer.setShadowStyle(ShadowStyle.card.normal)
+        UIView.animate(withDuration: 0.2) { [self] in
+            alpha = isHighlighted ? 0.54 : 1
+            transform = isHighlighted ? CGAffineTransform(scaleX: 0.98, y: 0.98) : .identity
+            layer.setShadowStyle(ShadowStyle.card.normal)
         }
     }
     
@@ -49,5 +49,28 @@ class TouchableControl: UIControl {
         contentView.backgroundColor = .background
         contentView.layer.setLayerStyle(LayerStyle.card.normal)
         layer.setLayerStyle(LayerStyle.card.normal)
+    }
+}
+
+class TouchableButton: UIButton {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        UIView.animate(withDuration: 0.15) { [self] in
+            transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        }
+        super.sendActions(for: .touchDown)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        UIView.animate(withDuration: 0.15) { [self] in
+            transform = isHighlighted ? CGAffineTransform(scaleX: 0.9, y: 0.9) : .identity
+        }
+        
+        guard let touchPoint = touches.first?.location(in: self) else { return }
+        if bounds.contains(touchPoint) {
+            super.sendActions(for: .touchUpInside)
+        } else {
+            super.sendActions(for: .touchUpOutside)
+        }
     }
 }

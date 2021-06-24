@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		80A6E568DCC29C1EB73B98B9 /* Pods_Shinkansen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FEEEF015C06A53B2C1341D9 /* Pods_Shinkansen.framework */; };
+		32E6B35726847BBF00C357F8 /* Anchorage in Frameworks */ = {isa = PBXBuildFile; productRef = 32E6B35626847BBF00C357F8 /* Anchorage */; };
 		E610E9992522C503003D947C /* ViewControllerAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610E9982522C503003D947C /* ViewControllerAnimatedTransitioning.swift */; };
 		E610E99C2522D23E003D947C /* TrainScheduleTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610E99B2522D23E003D947C /* TrainScheduleTableCell.swift */; };
 		E610E99F2522D298003D947C /* TouchableControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610E99E2522D298003D947C /* TouchableControl.swift */; };
@@ -67,9 +67,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0FEEEF015C06A53B2C1341D9 /* Pods_Shinkansen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shinkansen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B98B142A44FD9B4BBED493C /* Pods-Shinkansen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen.debug.xcconfig"; path = "Target Support Files/Pods-Shinkansen/Pods-Shinkansen.debug.xcconfig"; sourceTree = "<group>"; };
-		C40DE20DAE6CDFA840988628 /* Pods-Shinkansen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen.release.xcconfig"; path = "Target Support Files/Pods-Shinkansen/Pods-Shinkansen.release.xcconfig"; sourceTree = "<group>"; };
 		E610E9982522C503003D947C /* ViewControllerAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		E610E99B2522D23E003D947C /* TrainScheduleTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainScheduleTableCell.swift; sourceTree = "<group>"; };
 		E610E99E2522D298003D947C /* TouchableControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchableControl.swift; sourceTree = "<group>"; };
@@ -135,30 +132,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80A6E568DCC29C1EB73B98B9 /* Pods_Shinkansen.framework in Frameworks */,
+				32E6B35726847BBF00C357F8 /* Anchorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C9E96E5C52DF4DF85074CCB7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5B98B142A44FD9B4BBED493C /* Pods-Shinkansen.debug.xcconfig */,
-				C40DE20DAE6CDFA840988628 /* Pods-Shinkansen.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		E517AD654E20872D1E2748A2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0FEEEF015C06A53B2C1341D9 /* Pods_Shinkansen.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		E62C3CB7251D83C5004243AE /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,10 +241,10 @@
 			children = (
 				E610E9A32522E366003D947C /* NavigationController.swift */,
 				E64BCC9C251DAC8D009C036A /* BookingCriteriaViewController.swift */,
-				E64997CD252195B300CF5D47 /* TrainSelectionViewController.swift */,
 				E6CB6EE82521C24B0021CC70 /* BookingViewController.swift */,
 				E610E9982522C503003D947C /* ViewControllerAnimatedTransitioning.swift */,
 				E610E99B2522D23E003D947C /* TrainScheduleTableCell.swift */,
+				E64997CD252195B300CF5D47 /* TrainSelectionViewController.swift */,
 			);
 			path = Booking;
 			sourceTree = "<group>";
@@ -274,8 +254,6 @@
 			children = (
 				E662824D251D7F5A00072621 /* Shinkansen */,
 				E662824C251D7F5A00072621 /* Products */,
-				C9E96E5C52DF4DF85074CCB7 /* Pods */,
-				E517AD654E20872D1E2748A2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -344,17 +322,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E662825F251D7F5B00072621 /* Build configuration list for PBXNativeTarget "Shinkansen" */;
 			buildPhases = (
-				F4E8325D285328121FA0C0FE /* [CP] Check Pods Manifest.lock */,
 				E6628247251D7F5A00072621 /* Sources */,
 				E6628248251D7F5A00072621 /* Frameworks */,
 				E6628249251D7F5A00072621 /* Resources */,
-				F27E24295D5F3099DECA1A51 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Shinkansen;
+			packageProductDependencies = (
+				32E6B35626847BBF00C357F8 /* Anchorage */,
+			);
 			productName = Shinkansen;
 			productReference = E662824B251D7F5A00072621 /* Shinkansen.app */;
 			productType = "com.apple.product-type.application";
@@ -382,6 +361,9 @@
 				Base,
 			);
 			mainGroup = E6628242251D7F5A00072621;
+			packageReferences = (
+				32E6B35526847BBF00C357F8 /* XCRemoteSwiftPackageReference "Anchorage" */,
+			);
 			productRefGroup = E662824C251D7F5A00072621 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -406,48 +388,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		F27E24295D5F3099DECA1A51 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shinkansen/Pods-Shinkansen-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shinkansen/Pods-Shinkansen-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shinkansen/Pods-Shinkansen-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F4E8325D285328121FA0C0FE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Shinkansen-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E6628247251D7F5A00072621 /* Sources */ = {
@@ -639,7 +579,6 @@
 		};
 		E6628260251D7F5B00072621 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B98B142A44FD9B4BBED493C /* Pods-Shinkansen.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -659,7 +598,6 @@
 		};
 		E6628261251D7F5B00072621 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C40DE20DAE6CDFA840988628 /* Pods-Shinkansen.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -699,6 +637,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		32E6B35526847BBF00C357F8 /* XCRemoteSwiftPackageReference "Anchorage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Rightpoint/Anchorage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		32E6B35626847BBF00C357F8 /* Anchorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 32E6B35526847BBF00C357F8 /* XCRemoteSwiftPackageReference "Anchorage" */;
+			productName = Anchorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E6628243251D7F5A00072621 /* Project object */;
 }

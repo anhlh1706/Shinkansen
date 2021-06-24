@@ -9,9 +9,9 @@ import Foundation
 
 extension Bundle {
     
-    func decode<T: Decodable>(fileName: String, type: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+    func decode<T: Decodable>(fileName: String, type: T.Type) throws -> T? {
         guard let path = path(forResource: fileName, ofType: "json") else {
-            return
+            return nil
         }
         
         do {
@@ -20,9 +20,9 @@ extension Bundle {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             let result = try decoder.decode(T.self, from: data)
-            completion(.success(result))
+            return result
         } catch (let error) {
-            completion(.failure(error))
+            throw error
         }
     }
 }

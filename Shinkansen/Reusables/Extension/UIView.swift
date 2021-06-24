@@ -205,10 +205,10 @@ extension UIView {
 extension UIView {
 
     class func animate(withStyle style: UIViewAnimationStyle,
-                              delay: TimeInterval = 0,
-                              animations: @escaping () -> Swift.Void,
-                              completion: ((Bool) -> Swift.Void)? = nil) {
-
+                       delay: TimeInterval = 0,
+                       animations: @escaping () -> Swift.Void,
+                       completion: ((Bool) -> Swift.Void)? = nil) {
+        
         animate(withDuration: style.duration,
                 delay: delay,
                 usingSpringWithDamping: style.dampingRatio,
