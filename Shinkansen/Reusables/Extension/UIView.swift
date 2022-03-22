@@ -350,3 +350,333 @@ extension UIView {
         case transitionOut
     }
 }
+
+struct ConstraintEqual : OptionSet {
+    let rawValue: Int
+    init(rawValue: Int) { self.rawValue = rawValue }
+    static let top = ConstraintEqual(rawValue: 1 << 0)
+    static let leading = ConstraintEqual(rawValue: 1 << 1)
+    static let bottom = ConstraintEqual(rawValue: 1 << 2)
+    static let trailing = ConstraintEqual(rawValue: 1 << 3)
+    
+    static let topMargin = ConstraintEqual(rawValue: 1 << 4)
+    static let leadingMargin = ConstraintEqual(rawValue: 1 << 5)
+    static let bottomMargin = ConstraintEqual(rawValue: 1 << 6)
+    static let trailingMargin = ConstraintEqual(rawValue: 1 << 7)
+    
+    static let topSafeArea = ConstraintEqual(rawValue: 1 << 8)
+    static let leadingSafeArea = ConstraintEqual(rawValue: 1 << 9)
+    static let bottomSafeArea = ConstraintEqual(rawValue: 1 << 10)
+    static let trailingSafeArea = ConstraintEqual(rawValue: 1 << 11)
+    
+    static let centerVertical = ConstraintEqual(rawValue: 1 << 12)
+    static let centerHorizontal = ConstraintEqual(rawValue: 1 << 13)
+    
+    static let centerVerticalMargin = ConstraintEqual(rawValue: 1 << 14)
+    static let centerHorizontalMargin = ConstraintEqual(rawValue: 1 << 15)
+    
+    static let centerVerticalSafeArea = ConstraintEqual(rawValue: 1 << 16)
+    static let centerHorizontalSafeArea = ConstraintEqual(rawValue: 1 << 17)
+    
+    static let edges: ConstraintEqual = [top, leading, bottom, trailing]
+    static let marginEdges: ConstraintEqual = [topMargin, leadingMargin, bottomMargin, trailingMargin]
+    static let safeAreaEdges: ConstraintEqual = [topSafeArea, leadingSafeArea, bottomSafeArea, trailingSafeArea]
+    static let center: ConstraintEqual = [centerVertical, centerHorizontal]
+    static let centerMargin: ConstraintEqual = [centerVerticalMargin, centerHorizontalMargin]
+    static let centerSafeArea: ConstraintEqual = [centerVerticalSafeArea, centerHorizontalSafeArea]
+}
+
+extension UIView {
+    
+    convenience init(containingView: UIView,
+                     withConstaintEquals equals: ConstraintEqual,
+                     insetsConstant: NSDirectionalEdgeInsets = .zero) {
+        self.init(frame: .zero)
+        addSubview(containingView, withConstaintEquals: equals,
+                   insetsConstant: insetsConstant)
+    }
+    
+    @discardableResult
+    func addSubview(_ view: UIView,
+                    withConstaintEquals equals: ConstraintEqual,
+                    insetsConstant: NSDirectionalEdgeInsets = .zero ) -> Self {
+        addSubview(view)
+        
+        guard !equals.isEmpty else { return self }
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        if equals.contains(.top) {
+            view.topAnchor.constraint(equalTo: topAnchor,
+                                      constant: insetsConstant.top).isActive = true
+        }
+        
+        if equals.contains(.bottom) {
+            view.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                         constant: -insetsConstant.bottom).isActive = true
+        }
+        
+        if equals.contains(.leading) {
+            view.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                          constant: insetsConstant.leading).isActive = true
+        }
+        
+        if equals.contains(.trailing) {
+            view.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                           constant:  -insetsConstant.trailing).isActive = true
+        }
+        
+        if equals.contains(.topMargin) {
+            view.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor,
+                                      constant: insetsConstant.top).isActive = true
+        }
+        
+        if equals.contains(.bottomMargin) {
+            view.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor,
+                                         constant: -insetsConstant.bottom).isActive = true
+        }
+        
+        if equals.contains(.leadingMargin) {
+            view.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor,
+                                          constant: insetsConstant.leading).isActive = true
+        }
+        
+        if equals.contains(.trailingMargin) {
+            view.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor,
+                                           constant:  -insetsConstant.trailing).isActive = true
+        }
+        
+        
+        if equals.contains(.topSafeArea) {
+            view.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor,
+                                      constant: insetsConstant.top).isActive = true
+        }
+        
+        if equals.contains(.bottomSafeArea) {
+            view.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor,
+                                         constant: -insetsConstant.bottom).isActive = true
+        }
+        
+        if equals.contains(.leadingSafeArea) {
+            view.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor,
+                                          constant: insetsConstant.leading).isActive = true
+        }
+        
+        if equals.contains(.trailingSafeArea) {
+            view.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor,
+                                           constant:  -insetsConstant.trailing).isActive = true
+        }
+        
+        
+        if equals.contains(.centerVertical) {
+            view.centerYAnchor.constraint(equalTo: centerYAnchor,
+                                          constant: insetsConstant.top - insetsConstant.bottom).isActive = true
+        }
+        
+        if equals.contains(.centerHorizontal) {
+            view.centerXAnchor.constraint(equalTo:centerXAnchor,
+                                          constant: insetsConstant.leading - insetsConstant.trailing).isActive = true
+        }
+        
+        
+        if equals.contains(.centerVerticalMargin) {
+            view.centerYAnchor.constraint(equalTo: layoutMarginsGuide.centerYAnchor,
+                                          constant: insetsConstant.top - insetsConstant.bottom).isActive = true
+        }
+        
+        if equals.contains(.centerHorizontalMargin) {
+            view.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor,
+                                          constant: insetsConstant.leading - insetsConstant.trailing).isActive = true
+        }
+        
+        
+        if equals.contains(.centerVerticalSafeArea) {
+            view.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor,
+                                          constant: insetsConstant.top - insetsConstant.bottom).isActive = true
+        }
+        
+        if equals.contains(.centerHorizontalSafeArea) {
+            view.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor,
+                                          constant: insetsConstant.leading - insetsConstant.trailing).isActive = true
+        }
+        // for chaining function
+        return self
+    }
+    
+    func addConstraints(toView view: UIView,
+                        withConstaintEquals equals: ConstraintEqual,
+                        insetsConstant: NSDirectionalEdgeInsets = .zero) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        if equals.contains(.top) {
+            view.topAnchor.constraint(equalTo: topAnchor,
+                                      constant: insetsConstant.top).isActive = true
+        }
+        
+        if equals.contains(.bottom) {
+            view.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                         constant: -insetsConstant.bottom).isActive = true
+        }
+        
+        if equals.contains(.leading) {
+            view.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                          constant: insetsConstant.leading).isActive = true
+        }
+        
+        if equals.contains(.trailing) {
+            view.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                           constant:  -insetsConstant.trailing).isActive = true
+        }
+        
+        if equals.contains(.topMargin) {
+            view.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor,
+                                      constant: insetsConstant.top).isActive = true
+        }
+        
+        if equals.contains(.bottomMargin) {
+            view.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor,
+                                         constant: -insetsConstant.bottom).isActive = true
+        }
+        
+        if equals.contains(.leadingMargin) {
+            view.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor,
+                                          constant: insetsConstant.leading).isActive = true
+        }
+        
+        if equals.contains(.trailingMargin) {
+            view.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor,
+                                           constant:  -insetsConstant.trailing).isActive = true
+        }
+        
+        
+        if equals.contains(.topSafeArea) {
+            view.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor,
+                                      constant: insetsConstant.top).isActive = true
+        }
+        
+        if equals.contains(.bottomSafeArea) {
+            view.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor,
+                                         constant: -insetsConstant.bottom).isActive = true
+        }
+        
+        if equals.contains(.leadingSafeArea) {
+            view.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor,
+                                          constant: insetsConstant.leading).isActive = true
+        }
+        
+        if equals.contains(.trailingSafeArea) {
+            view.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor,
+                                           constant:  -insetsConstant.trailing).isActive = true
+        }
+        
+        
+        if equals.contains(.centerVertical) {
+            view.centerYAnchor.constraint(equalTo: centerYAnchor,
+                                          constant: insetsConstant.top - insetsConstant.bottom).isActive = true
+        }
+        
+        if equals.contains(.centerHorizontal) {
+            view.centerXAnchor.constraint(equalTo:centerXAnchor,
+                                          constant: insetsConstant.leading - insetsConstant.trailing).isActive = true
+        }
+        
+        
+        if equals.contains(.centerVerticalMargin) {
+            view.centerYAnchor.constraint(equalTo: layoutMarginsGuide.centerYAnchor,
+                                          constant: insetsConstant.top - insetsConstant.bottom).isActive = true
+        }
+        
+        if equals.contains(.centerHorizontalMargin) {
+            view.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor,
+                                          constant: insetsConstant.leading - insetsConstant.trailing).isActive = true
+        }
+        
+        
+        if equals.contains(.centerVerticalSafeArea) {
+            view.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor,
+                                          constant: insetsConstant.top - insetsConstant.bottom).isActive = true
+        }
+        
+        if equals.contains(.centerHorizontalSafeArea) {
+            view.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor,
+                                          constant: insetsConstant.leading - insetsConstant.trailing).isActive = true
+        }
+    }
+    
+    func addConstraints(toView view: UIView,
+                        withConstaintGreaterThanOrEquals greaterThanOrEquals: ConstraintEqual,
+                        insetsConstant: NSDirectionalEdgeInsets = .zero) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        if greaterThanOrEquals.contains(.top) {
+            view.topAnchor.constraint(greaterThanOrEqualTo: topAnchor,
+                                      constant: insetsConstant.top).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.bottom) {
+            view.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor,
+                                         constant: -insetsConstant.bottom).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.leading) {
+            view.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor,
+                                          constant: insetsConstant.leading).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.trailing) {
+            trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor,
+                                           constant:  insetsConstant.trailing).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.topMargin) {
+            view.topAnchor.constraint(greaterThanOrEqualTo: layoutMarginsGuide.topAnchor,
+                                      constant: insetsConstant.top).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.bottomMargin) {
+            bottomAnchor.constraint(greaterThanOrEqualTo: view.layoutMarginsGuide.bottomAnchor,
+                                         constant: insetsConstant.bottom).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.leadingMargin) {
+            view.leadingAnchor.constraint(greaterThanOrEqualTo: layoutMarginsGuide.leadingAnchor,
+                                          constant: insetsConstant.leading).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.trailingMargin) {
+            trailingAnchor.constraint(greaterThanOrEqualTo: view.layoutMarginsGuide.trailingAnchor,
+                                           constant:  insetsConstant.trailing).isActive = true
+        }
+        
+        
+        if greaterThanOrEquals.contains(.topSafeArea) {
+            view.topAnchor.constraint(greaterThanOrEqualTo: safeAreaLayoutGuide.topAnchor,
+                                      constant: insetsConstant.top).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.bottomSafeArea) {
+            bottomAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor,
+                                         constant: insetsConstant.bottom).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.leadingSafeArea) {
+            view.leadingAnchor.constraint(greaterThanOrEqualTo: safeAreaLayoutGuide.leadingAnchor,
+                                          constant: insetsConstant.leading).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.trailingSafeArea) {
+            trailingAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.trailingAnchor,
+                                           constant:  insetsConstant.trailing).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.centerVertical) {
+            view.centerYAnchor.constraint(greaterThanOrEqualTo: centerYAnchor,
+                                                              constant: 0).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.centerHorizontal) {
+            view.centerXAnchor.constraint(greaterThanOrEqualTo: centerXAnchor,
+                                                              constant: 0).isActive = true
+        }
+    }
+}

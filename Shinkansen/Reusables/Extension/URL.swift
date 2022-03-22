@@ -27,3 +27,8 @@ extension URL {
     }
     
 }
+extension URL {
+    static func resource(name resourceName: String) -> URL? {
+        return Bundle.main.url(forResource: "SeatMap.scnassets/\(resourceName)", withExtension: nil)
+    }
+}

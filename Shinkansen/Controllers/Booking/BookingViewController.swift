@@ -60,7 +60,11 @@ class BookingViewController: UIViewController {
         }
     }
     
-    var headerInformation: HeaderInformation?
+    var headerInfomation: HeaderInformation? {
+        didSet {
+            setHeaderInformationValue(headerInfomation)
+        }
+    }
     
     var dateLabel: Label!
     
@@ -126,12 +130,13 @@ class BookingViewController: UIViewController {
                              for: .touchUpInside)
         
         // MARK: - Present header infomation
-        guard let headerInformation = headerInformation else {
+        guard let headerInformation = headerInfomation else {
             return
         }
         dateLabel?.text = "\(headerInformation.dayOfWeek), \(headerInformation.date)"
         setupInteraction()
         setVisibleMainView()
+        setHeaderInformationValue(headerInformation)
     }
     
     func setVisibleMainView() {
@@ -215,21 +220,21 @@ class BookingViewController: UIViewController {
     }
     
     func setHeaderInformationValue(_ headerInformation: HeaderInformation?) {
-//        guard let headerInformation = headerInformation,
-//            let dateLabel = dateLabel,
-//            let headerRouteInformationView = headerRouteInformationView else { return }
-//
-//        dateLabel.text = "\(headerInformation.dayOfWeek), \(headerInformation.date)"
-//        headerRouteInformationView.setupValue(fromStation: headerInformation.fromStation,
-//                                              fromTime: headerInformation.fromTime,
-//                                              toStation: headerInformation.toStation,
-//                                              toTime: headerInformation.toTime,
-//                                              trainNumber: headerInformation.trainNumber,
-//                                              trainName: headerInformation.trainName,
-//                                              carNumber: headerInformation.carNumber,
-//                                              className: headerInformation.className,
-//                                              seatNumber: headerInformation.seatNumber,
-//                                              price: headerInformation.price)
+        guard let headerInformation = headerInformation,
+            let dateLabel = dateLabel,
+            let headerRouteInformationView = headerInfomationView else { return }
+
+        dateLabel.text = "\(headerInformation.dayOfWeek), \(headerInformation.date)"
+        headerRouteInformationView.setupValue(fromStation: headerInformation.fromStation,
+                                              fromTime: headerInformation.fromTime,
+                                              toStation: headerInformation.toStation,
+                                              toTime: headerInformation.toTime,
+                                              trainNumber: headerInformation.trainNumber,
+                                              trainName: headerInformation.trainName,
+                                              carNumber: headerInformation.carNumber,
+                                              className: headerInformation.className,
+                                              seatNumber: headerInformation.seatNumber,
+                                              price: headerInformation.price)
     }
 }
 

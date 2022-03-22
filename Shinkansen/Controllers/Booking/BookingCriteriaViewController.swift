@@ -168,7 +168,7 @@ final class BookingCriteriaViewController: BookingViewController {
         case 1:
             dateOffset = 86400 // tomorow
         default:
-            dateOffset = 60 * 60 * 24 * 2 // next 2 days
+            dateOffset = 86400 * 2 // next 2 days
         }
         
         let selectedDate = Date(timeIntervalSinceNow: dateOffset)
@@ -190,7 +190,7 @@ final class BookingCriteriaViewController: BookingViewController {
         let fromStation = "Tokyo"
         let toStation = "Ōmiya"
         
-        trainSelectionVC.headerInformation =
+        trainSelectionVC.headerInfomation =
             HeaderInformation(dayOfWeek: dayOfWeek,
                               date: date,
                               fromStation: fromStation,

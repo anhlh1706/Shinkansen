@@ -9,6 +9,8 @@ import UIKit
 
 struct LayerStyle {
     
+    static let none = LayerStyle(opacity: 0, cornerRadius: 0, backgroundColor: .clear, shadowStyle: .noShadow)
+    
     var opacity: Float
     
     var cornerRadius: CGFloat
