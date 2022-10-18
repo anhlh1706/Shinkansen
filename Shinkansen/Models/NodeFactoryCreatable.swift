@@ -7,7 +7,6 @@
 
 import Foundation
 import SceneKit
-import BrightFutures
 
 public protocol NodeFactoryCreatable {
     init(node: SCNNode)
@@ -42,48 +41,37 @@ final class NodeFactory {
     
     public init(url: URL) {
         self.url = url
-        fetchModelData(url)
-            .flatMap{ self.loadNode(from: $0) }
-            .onComplete(callback: finalizeData)
+        Task.init {
+            let data = await fetchModelData(url)
+            if case .success(let success) = data {
+                let node = await loadNode(from: success)
+                finalizeData(node)
+                
+            }
+        }
     }
     
-    public init(modelData: [ModelData]) {
-        loadNode(from: modelData)
-            .onComplete(callback: finalizeData)
+    public init(modelData: [ModelData]) async {
+        await finalizeData(loadNode(from: modelData))
     }
     
     /// if proviode URL let fetch model data from URL first
     /// - Parameter url: URL that contain json of `[ModelData]`
-    private func fetchModelData(_ url: URL) -> Future<[ModelData], Error> {
-        // return it as Future of `[ModelData]`
-        return Future { complete in
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if let data = data {
-                    let decoder = JSONDecoder()
-                    do {
-                        let response = try decoder.decode([ModelData].self, from: data)
-                        complete(.success(response))
-                    } catch (let error) {
-                        complete(.failure(error))
-                    }
-                }else if let error = error {
-                    complete(.failure(error))
-                }else{
-                    complete(.failure(NSError(
-                        domain: "NodeFactory",
-                        code: -9001,
-                        userInfo: [NSLocalizedFailureReasonErrorKey: "Something wrong"])))
-                }
-            }.resume()
+    private func fetchModelData(_ url: URL) async -> Result<[ModelData], Error> {
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let items = try JSONDecoder().decode([ModelData].self, from: data)
+            return .success(items)
+        } catch {
+            return .failure(error)
         }
     }
     
-    
     /// Chained method to work after `[ModelData]` are generated
     /// - Parameter future: `[ModelData]` future object
-    private func loadNode(from modelData: [ModelData]) -> Future<[String: SCNNode?], Error> {
+    private func loadNode(from modelData: [ModelData]) async -> Result<[String: SCNNode?], Error> {
         self.modelData = modelData
-        return loadModels(
+        return await loadModels(
             from: Dictionary(
                 uniqueKeysWithValues: modelData.compactMap {
                     switch $0.resource {
@@ -101,39 +89,32 @@ final class NodeFactory {
     
     /// Load all models by sequency
     /// - Parameter data: String = refernced key of model, URL = url of `*.scn` file
-    public func loadModels(from data: [String: URL]) -> Future<[String: SCNNode?], Error> {
-        return data.map({ loadModel(name: $0, from: $1) })
-            .sequence()
-            .map { Dictionary(uniqueKeysWithValues: $0) }
+    public func loadModels(from data: [String: URL]) async -> Result<[String: SCNNode?], Error> {
+        let d = await data.asyncMap({ await loadModel(name: $0, from: $1) })
+        
+        if let firstErrorCase = d.first(where: { (try? $0.get()) == nil }), case .failure(let failure) = firstErrorCase {
+            return .failure(failure)
+        }
+        return .success(Dictionary(uniqueKeysWithValues: d.compactMap({ try? $0.get() })))
     }
     
     
     /// Load model (*.scn file) from url
     /// - Parameter name: Refernced key of mode
     /// - Parameter url: URL of `*.scn` file
-    public func loadModel(name: String, from url: URL) -> Future<((String, SCNNode?)), Error> {
+    public func loadModel(name: String, from url: URL) async -> Result<(String, SCNNode?), Error> {
         /// returns pair of String, SCNNode
-        return Future { [weak self] complete in
-            DispatchQueue.global(qos: .background).async {
-                if let node = SCNReferenceNode(url: url) {
-                    node.load()
-                    if let modelData = self?.modelData?.first(where: {$0.name == name}),
-                        modelData.isInteractible{
-                        self?.applyInteractiveCategoryBitmask(to: node)
-                    }
-                    DispatchQueue.main.async {
-                        complete(
-                            .success(
-                                (name, node.childNodes.first )
-                            )
-                        )
-                    }
-                }else{
-                    complete(.failure(NSError(domain: "NodeFactory",
-                                              code: -9001,
-                                              userInfo: [NSLocalizedFailureReasonErrorKey: "URL of model seems wrong"])))
-                }
+        if let node = await SCNReferenceNode(url: url) {
+            await node.load()
+            if let modelData = self.modelData?.first(where: {$0.name == name}),
+               modelData.isInteractible {
+                self.applyInteractiveCategoryBitmask(to: node)
             }
+            return await .success((name, node.childNodes.first))
+        } else {
+            return .failure(NSError(domain: "NodeFactory",
+                                    code: -9001,
+                                    userInfo: [NSLocalizedFailureReasonErrorKey: "URL of model seems wrong"]))
         }
     }
     
@@ -188,4 +169,18 @@ final class NodeFactory {
         }
     }
     
+}
+
+extension Sequence {
+    func asyncMap<T>(
+        _ transform: (Element) async throws -> T
+    ) async rethrows -> [T] {
+        var values = [T]()
+
+        for element in self {
+            try await values.append(transform(element))
+        }
+
+        return values
+    }
 }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		32E6B35726847BBF00C357F8 /* Anchorage in Frameworks */ = {isa = PBXBuildFile; productRef = 32E6B35626847BBF00C357F8 /* Anchorage */; };
 		E610E9992522C503003D947C /* ViewControllerAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610E9982522C503003D947C /* ViewControllerAnimatedTransitioning.swift */; };
 		E610E99C2522D23E003D947C /* TrainScheduleTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610E99B2522D23E003D947C /* TrainScheduleTableCell.swift */; };
 		E610E99F2522D298003D947C /* TouchableControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610E99E2522D298003D947C /* TouchableControl.swift */; };
@@ -52,6 +51,7 @@
 		E6628253251D7F5A00072621 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6628252251D7F5A00072621 /* InitialViewController.swift */; };
 		E6628258251D7F5B00072621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6628257251D7F5B00072621 /* Assets.xcassets */; };
 		E662825B251D7F5B00072621 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6628259251D7F5B00072621 /* LaunchScreen.storyboard */; };
+		E6BBF8BC28F7F49D004C3982 /* Anchorage in Frameworks */ = {isa = PBXBuildFile; productRef = E6BBF8BB28F7F49D004C3982 /* Anchorage */; };
 		E6C3E99927EAD8B000413142 /* TiltNodeMotionEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C3E99327EAD8B000413142 /* TiltNodeMotionEffect.swift */; };
 		E6C3E99C27EAD8B000413142 /* DecayFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C3E99627EAD8B000413142 /* DecayFunction.swift */; };
 		E6C8521027DB23C700698D18 /* SeatClassSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8520F27DB23C700698D18 /* SeatClassSelectionViewController.swift */; };
@@ -65,7 +65,6 @@
 		E6C8522127DB361300698D18 /* SeatNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8522027DB361300698D18 /* SeatNode.swift */; };
 		E6C8522327DB363800698D18 /* StaticNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8522227DB363800698D18 /* StaticNode.swift */; };
 		E6C8522527DB365200698D18 /* NodeFactoryCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8522427DB365200698D18 /* NodeFactoryCreatable.swift */; };
-		E6C8522827DB36C400698D18 /* BrightFutures in Frameworks */ = {isa = PBXBuildFile; productRef = E6C8522727DB36C400698D18 /* BrightFutures */; };
 		E6C8522A27DB36D600698D18 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8522927DB36D600698D18 /* ModelData.swift */; };
 		E6C8522C27DB372000698D18 /* SceneKitAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8522B27DB372000698D18 /* SceneKitAnimator.swift */; };
 		E6C8522E27DB3B4B00698D18 /* HeadUpBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8522D27DB3B4B00698D18 /* HeadUpBadgeView.swift */; };
@@ -165,8 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32E6B35726847BBF00C357F8 /* Anchorage in Frameworks */,
-				E6C8522827DB36C400698D18 /* BrightFutures in Frameworks */,
+				E6BBF8BC28F7F49D004C3982 /* Anchorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,8 +396,7 @@
 			);
 			name = Shinkansen;
 			packageProductDependencies = (
-				32E6B35626847BBF00C357F8 /* Anchorage */,
-				E6C8522727DB36C400698D18 /* BrightFutures */,
+				E6BBF8BB28F7F49D004C3982 /* Anchorage */,
 			);
 			productName = Shinkansen;
 			productReference = E662824B251D7F5A00072621 /* Shinkansen.app */;
@@ -429,8 +426,7 @@
 			);
 			mainGroup = E6628242251D7F5A00072621;
 			packageReferences = (
-				32E6B35526847BBF00C357F8 /* XCRemoteSwiftPackageReference "Anchorage" */,
-				E6C8522627DB36C400698D18 /* XCRemoteSwiftPackageReference "BrightFutures" */,
+				E6BBF8BA28F7F49D004C3982 /* XCRemoteSwiftPackageReference "Anchorage" */,
 			);
 			productRefGroup = E662824C251D7F5A00072621 /* Products */;
 			projectDirPath = "";
@@ -667,7 +663,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G5XRG6XD8F;
+				DEVELOPMENT_TEAM = H5QVB3WQM5;
 				INFOPLIST_FILE = Shinkansen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -686,7 +682,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KK338VVZ82;
+				DEVELOPMENT_TEAM = H5QVB3WQM5;
 				INFOPLIST_FILE = Shinkansen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -723,34 +719,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		32E6B35526847BBF00C357F8 /* XCRemoteSwiftPackageReference "Anchorage" */ = {
+		E6BBF8BA28F7F49D004C3982 /* XCRemoteSwiftPackageReference "Anchorage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Rightpoint/Anchorage";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.5.0;
-			};
-		};
-		E6C8522627DB36C400698D18 /* XCRemoteSwiftPackageReference "BrightFutures" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Thomvis/BrightFutures";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.0;
+				minimumVersion = 4.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		32E6B35626847BBF00C357F8 /* Anchorage */ = {
+		E6BBF8BB28F7F49D004C3982 /* Anchorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 32E6B35526847BBF00C357F8 /* XCRemoteSwiftPackageReference "Anchorage" */;
+			package = E6BBF8BA28F7F49D004C3982 /* XCRemoteSwiftPackageReference "Anchorage" */;
 			productName = Anchorage;
-		};
-		E6C8522727DB36C400698D18 /* BrightFutures */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E6C8522627DB36C400698D18 /* XCRemoteSwiftPackageReference "BrightFutures" */;
-			productName = BrightFutures;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

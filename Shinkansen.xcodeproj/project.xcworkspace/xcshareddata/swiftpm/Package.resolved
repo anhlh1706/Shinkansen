@@ -1,25 +1,14 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Anchorage",
-        "repositoryURL": "https://github.com/Rightpoint/Anchorage",
-        "state": {
-          "branch": null,
-          "revision": "23a6dd0ccf9529d2750d8679a2e74a161cff2f16",
-          "version": "4.5.0"
-        }
-      },
-      {
-        "package": "BrightFutures",
-        "repositoryURL": "https://github.com/Thomvis/BrightFutures",
-        "state": {
-          "branch": null,
-          "revision": "939858b811026f85e87847a808f0bea2f187e5c4",
-          "version": "8.1.0"
-        }
+  "pins" : [
+    {
+      "identity" : "anchorage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Rightpoint/Anchorage",
+      "state" : {
+        "revision" : "23a6dd0ccf9529d2750d8679a2e74a161cff2f16",
+        "version" : "4.5.0"
       }
-    ]
-  },
-  "version": 1
+    }
+  ],
+  "version" : 2
 }

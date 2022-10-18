@@ -16,7 +16,7 @@ final class SeatClassSelectionViewController: BookingViewController {
     
     var selectedIndexPath: IndexPath?
     
-    var seatClasses: [SeatClass] = []
+    var seatClasses = [SeatClass]()
     
     var seatMap: SeatMap?
     
@@ -27,7 +27,9 @@ final class SeatClassSelectionViewController: BookingViewController {
         setupView()
         setupTableView()
         setupStaticContent()
-        obtainData()
+        Task.init {
+            await obtainData()
+        }
     }
     
     func setupView() {
@@ -58,7 +60,7 @@ final class SeatClassSelectionViewController: BookingViewController {
         
     }
     
-    func obtainData() {
+    func obtainData() async {
         SeatMap.fetchData { [weak self] result in
             if case .success(let seatMap) = result {
                 DispatchQueue.main.async {
@@ -80,9 +82,8 @@ final class SeatClassSelectionViewController: BookingViewController {
         
         let decoder = JSONDecoder()
         if let data = NSDataAsset(name: "ModelData")?.data,
-            let modelData = try? decoder.decode([ModelData].self, from: data) {
-                NodeFactory.shared =
-                    NodeFactory(modelData: modelData)
+           let modelData = try? decoder.decode([ModelData].self, from: data) {
+            NodeFactory.shared = await NodeFactory(modelData: modelData)
         } else {
             fatalError("There is some errors of trying to phrase JSON, so please check ModelData.json in Assets.xcassets")
         }

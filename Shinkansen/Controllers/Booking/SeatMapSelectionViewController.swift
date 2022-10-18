@@ -47,13 +47,9 @@ final class SeatMapSelectionViewController: BookingViewController {
                 bottomButton.titleLabel?.alpha = 0
             }
             
-            UIView.animate(withDuration: 0.35,
-                           animations: {
-                            self.headerInfomationView
-                                .descriptionSetView
-                                .carNumberSetView.alpha = 1
-                            self.bottomButton
-                                .titleLabel?.alpha = 1
+            UIView.animate(withDuration: 0.35, animations: {
+                self.headerInfomationView.descriptionSetView.carNumberSetView.alpha = 1
+                self.bottomButton.titleLabel?.alpha = 1
             })
         }
     }
