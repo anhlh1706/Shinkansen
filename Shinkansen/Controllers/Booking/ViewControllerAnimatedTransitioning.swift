@@ -9,11 +9,9 @@ import UIKit
 
 final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
     
-    var isPresenting : Bool
+    var isPresenting: Bool
     
     lazy var animationStyle: UIViewAnimationStyle = UIViewAnimationStyle.transitionAnimationStyle
-    
-    lazy var CAAnimationStyle: CABasicAnimationStyle = CABasicAnimationStyle.transitionAnimationStyle
     
     init(isPresenting : Bool) {
         self.isPresenting = isPresenting

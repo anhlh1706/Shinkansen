@@ -98,8 +98,6 @@ final class SeatClassTableViewCell: UITableViewCell {
     }
     
     func setupTheme() {
-        seatClassNameSetView.setupTheme()
-        seatClassIconImageView.setupTheme()
         descriptionLabel.font = .systemFont(ofSize: 13)
         descriptionLabel.textColor = .subtext
         descriptionLabel.lineBreakMode = .byTruncatingTail

@@ -68,10 +68,10 @@ final class VerticalLabelsStackView: UIStackView {
         subtitleLabel.font = UIFontMetrics(forTextStyle: .caption2).scaledFont(for: .systemFont(ofSize: 10, weight: .medium))
         spacing = 3
         setTextAlignment()
+        subtitleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
     }
     
-    func setupValue(title: String,
-                          subtitle: String? = nil) {
+    func setupValue(title: String, subtitle: String? = nil) {
         titleLabel.text = title
         subtitleLabel.text = subtitle
     }
