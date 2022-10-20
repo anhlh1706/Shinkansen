@@ -102,15 +102,11 @@ final class InteractivePopOverlayView: UIView {
         callToActionBackgroundView.centerYAnchor == callToActionContainerView.centerYAnchor
         
         callToActionBackgroundView.centerXAnchor == callToActionContainerView.leadingAnchor - offsetCallToActionBackgroundX
-        let sizeRatioToViewHeight: CGFloat = 1.125
-        callToActionBackgroundView.heightAnchor
-            .constraint(equalTo: callToActionContainerView.heightAnchor,
-                        multiplier: sizeRatioToViewHeight)
-            .isActive = true
-        callToActionBackgroundView.widthAnchor
-            .constraint(equalTo: callToActionContainerView.heightAnchor,
-                        multiplier: sizeRatioToViewHeight)
-            .isActive = true
+        let viewRatio: CGFloat = 1.125
+        
+        callToActionBackgroundView.heightAnchor == callToActionContainerView.heightAnchor * viewRatio
+        
+        callToActionBackgroundView.widthAnchor == callToActionContainerView.heightAnchor * viewRatio
         
         callToActionLabel = Label()
         callToActionLabel.text = "←  Previous"

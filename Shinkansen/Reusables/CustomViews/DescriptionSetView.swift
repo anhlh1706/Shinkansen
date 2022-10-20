@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Anchorage
 
 class DescriptionSetView: UIStackView {
     
@@ -115,8 +116,7 @@ class SubheadlineLabelSetView: UIStackView {
         addArrangedSubview(titleLabel)
         addArrangedSubview(subtitlePlaceholderLabel)
         addSubview(subtitleLabel)
-        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabel.centerYAnchor.constraint(equalTo: subtitlePlaceholderLabel.centerYAnchor).isActive = true
+        subtitleLabel.centerYAnchor == subtitlePlaceholderLabel.centerYAnchor
     }
     
     private func setTextAlignment() {

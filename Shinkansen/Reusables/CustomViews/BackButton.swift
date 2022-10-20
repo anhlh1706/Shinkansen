@@ -13,12 +13,9 @@ final class BackButton: UIControl {
     override var isHighlighted: Bool {
         didSet {
             if oldValue != isHighlighted {
-                playAnimation(to: isHighlighted ? .pullBack : .original,
-                              withDuration: 0.125)
-                UIView.animate(withDuration: 0.2) {
-                    [weak self] in
-                    self?.shapeView.alpha =
-                        (self?.isHighlighted ?? false) ? 0.54 : 1
+                playAnimation(to: isHighlighted ? .pullBack : .original, withDuration: 0.125)
+                UIView.animate(withDuration: 0.2) { [weak self] in
+                    self?.shapeView.alpha = (self?.isHighlighted ?? false) ? 0.54 : 1
                     self?.shapeView.transform.tx = (self?.isHighlighted ?? false) ? 6 : 0
                 }
             }
@@ -88,7 +85,6 @@ final class BackButton: UIControl {
         setupView()
         setupShapeLayer()
         setupTheme()
-//        setupTransitionProgressAnimation()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -97,16 +93,12 @@ final class BackButton: UIControl {
     
     func setupView() {
         shapeView.layer.addSublayer(shapeLayer)
-        shapeView.translatesAutoresizingMaskIntoConstraints = false
-        shapeView.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        shapeView.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        shapeView.sizeAnchors == CGSize(width: 24, height: 24)
         shapeView.isUserInteractionEnabled = false
         
         addSubview(shapeView)
         shapeView.centerAnchors == centerAnchors
-        translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalToConstant: 44).isActive = true
-        widthAnchor.constraint(equalToConstant: 44).isActive = true
+        sizeAnchors == CGSize(width: 44, height: 44)
     }
     
     func setupShapeLayer() {
@@ -121,27 +113,7 @@ final class BackButton: UIControl {
         shapeLayer.strokeColor = UIColor.primary.cgColor
     }
     
-    func setupTransitionProgressAnimation() {
-        let animation = CABasicAnimation(keyPath: "path")
-        animation.duration = 1
-        animation.fromValue = ArrowShape.original.getPath()
-        animation.toValue = ArrowShape.pullBack.getPath()
-        animation.isRemovedOnCompletion = true
-        shapeLayer.add(animation, forKey: "transitionProgressAnimation")
-        shapeLayer.speed = 0
-    }
-    
-    func setShapeProgress(to transitionProgress: CFTimeInterval) {
-//        if shapeLayer.animation(forKey: "ActualAnimation") == nil {
-//            if shapeLayer.animation(forKey: "transitionProgressAnimation") == nil {
-//                setupTransitionProgressAnimation()
-//            }
-//            shapeLayer.timeOffset = transitionProgress
-//        }
-    }
-    
     func playAnimation(to arrowShape: ArrowShape, withDuration duration: CFTimeInterval = 0.35) {
-        
         shapeLayer.removeAllAnimations()
         let animation = CABasicAnimation(keyPath: "path")
         

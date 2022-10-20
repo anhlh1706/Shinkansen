@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Anchorage
 
 extension SeatClassType {
     func image() -> UIImage {
@@ -86,9 +87,7 @@ final class SeatClassIconImageView: UIImageView {
     }
     
     private func setupView() {
-        translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalTo: widthAnchor).isActive = true
-        widthAnchor.constraint(equalToConstant: iconSize.width()).isActive = true
+        sizeAnchors == CGSize(width: iconSize.width(), height: iconSize.width())
         contentMode = .scaleAspectFit
         image = seatClass.iconImage()
     }
