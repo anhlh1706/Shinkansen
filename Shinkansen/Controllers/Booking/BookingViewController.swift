@@ -117,8 +117,9 @@ class BookingViewController: UIViewController {
         
         contentView = UIView()
         view.addSubview(contentView)
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.frame = tableView.frame
+        contentView.horizontalAnchors == view.horizontalAnchors
+        contentView.bottomAnchor == view.bottomAnchor
+        contentView.topAnchor == headerInfoStackView.bottomAnchor
         
         view.addSubview(backButton)
         backButton.centerYAnchor == dateLabel.centerYAnchor

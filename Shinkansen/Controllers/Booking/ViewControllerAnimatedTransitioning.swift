@@ -9,12 +9,12 @@ import UIKit
 
 final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
     
-    var isPresenting: Bool
+    var isPush: Bool
     
     lazy var animationStyle: UIViewAnimationStyle = UIViewAnimationStyle.transitionAnimationStyle
     
-    init(isPresenting : Bool) {
-        self.isPresenting = isPresenting
+    init(isPush : Bool) {
+        self.isPush = isPush
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -32,23 +32,23 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
         
         let container = transitionContext.containerView
         
-        isPresenting ? container.addSubview(toView) : container.insertSubview(toView, belowSubview: fromView)
+        isPush ? container.addSubview(toView) : container.insertSubview(toView, belowSubview: fromView)
         
-        let parentVC = isPresenting ? fromViewController : toViewController
+        let parentVC = isPush ? fromViewController : toViewController
         
-        let childVC = isPresenting ? toViewController : fromViewController
+        let childVC = isPush ? toViewController : fromViewController
         
-        // MARK: Set all the views in place and have been processed thru Autolayout
+        // MARK: Load tất cả views
         parentVC?.view.layoutIfNeeded()
         childVC?.view.layoutIfNeeded()
         
-        // MARK: Transition Between BookingViewController
+        // MARK: Transition chung của các BookingViewController
         if let fromBookingVC = fromViewController as? BookingViewController,
             let toBookingVC = toViewController as? BookingViewController {
             
             // Reset verticalRubberBandEffect
-            fromBookingVC.headerInfomationView.alpha = isPresenting ? 0 : 1
-            toBookingVC.headerInfomationView.alpha = !isPresenting ? 0 : 1
+            fromBookingVC.headerInfomationView.alpha = isPush ? 0 : 1
+            toBookingVC.headerInfomationView.alpha = !isPush ? 0 : 1
             
             UIView.animate(withStyle: animationStyle, animations: {
                 fromBookingVC.headerInfomationView.verticalRubberBandEffect(byVerticalContentOffset: 0)
@@ -62,11 +62,24 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
                 let fromVC: BookingViewController
                 let toVC: BookingViewController
                 
+                func animate(view: ((BookingViewController) -> UIView),
+                             parentView: ((BookingViewController) -> UIView)? = nil,
+                             basedVerticalAnimationOffset: CGFloat,
+                             percentageEndPoint: TimeInterval = 0.4) {
+                    
+                    _animate(fromView: view(fromVC),
+                             fromParentView: (parentView != nil) ? parentView!(fromVC) : (view(fromVC).superview ?? UIView()),
+                             toView: view(toVC),
+                             toParentView: (parentView != nil) ? parentView!(toVC) : (view(toVC).superview ?? UIView()),
+                             basedVerticalAnimationOffset: basedVerticalAnimationOffset,
+                             percentageEndPoint: 0.4)
+                }
+                
                 func _animate(fromView: UIView, fromParentView: UIView,
-                             toView: UIView, toParentView: UIView,
-                             basedHorizontalAnimationOffset: CGFloat = 0,
-                             basedVerticalAnimationOffset: CGFloat = 0,
-                             percentageEndPoint: TimeInterval = 1) {
+                              toView: UIView, toParentView: UIView,
+                              basedHorizontalAnimationOffset: CGFloat = 0,
+                              basedVerticalAnimationOffset: CGFloat = 0,
+                              percentageEndPoint: TimeInterval = 1) {
                     
                     // Sets all animated views to orginal position before them get calculated
                     fromView.transform = .identity
@@ -103,11 +116,11 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
                     toView.transform.ty = -displacement.y
                     
                     // MARK: In case one view is hidden
-                    if fromView.isHidden  {
+                    if fromView.isHidden {
                         toView.alpha = 0
                     }
                     
-                    if toView.isHidden  {
+                    if toView.isHidden {
                         fromView.alpha = 1
                     }
                     
@@ -134,20 +147,6 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
                                     }
                     })
                 }
-                
-                func animate(view: ((BookingViewController) -> UIView),
-                             parentView: ((BookingViewController) -> UIView)? = nil,
-                             basedVerticalAnimationOffset: CGFloat,
-                             percentageEndPoint: TimeInterval = 0.4
-                    ) {
-                    
-                    _animate(fromView: view(fromVC),
-                             fromParentView: (parentView != nil) ? parentView!(fromVC) : (view(fromVC).superview ?? UIView()),
-                             toView: view(toVC),
-                             toParentView: (parentView != nil) ? parentView!(toVC) : (view(toVC).superview ?? UIView()),
-                             basedVerticalAnimationOffset: basedVerticalAnimationOffset,
-                             percentageEndPoint: 0.4)
-                }
             }
             
             let animateObject = AnimateObject(fromVC: fromBookingVC, toVC: toBookingVC)
@@ -155,44 +154,44 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
             animateObject.animate(view: { $0.dateLabel },
                                   parentView: { $0.view },
                                   basedVerticalAnimationOffset: 18)
-            
+
             animateObject.animate(view: { $0.headerInfomationView },
                                   parentView: { $0.view },
                                   basedVerticalAnimationOffset: 72)
-            
+
             animateObject.animate(view: { $0.headerInfomationView.stationPairView.fromStationHeadlineView.subtitleLabel },
                                   basedVerticalAnimationOffset: 6)
-            
+
             animateObject.animate(view: { $0.headerInfomationView.stationPairView.toStationHeadlineView.subtitleLabel },
                                   basedVerticalAnimationOffset: 6)
-            
+
             animateObject.animate(view: { $0.headerInfomationView.descriptionSetView },
                                   basedVerticalAnimationOffset: 18)
-            
+
             animateObject.animate(view: { $0.headerInfomationView.descriptionSetView.carNumberSetView },
                                   basedVerticalAnimationOffset: 12)
-            
+
             animateObject.animate(view: { $0.headerInfomationView.descriptionSetView.seatNumberSetView },
                                   basedVerticalAnimationOffset: 12)
-            
+
             animateObject.animate(view: { $0.headerInfomationView.descriptionSetView.priceSetView },
                                   basedVerticalAnimationOffset: 12)
             
             
             // Animate Back Button
             
-            toBookingVC.backButton.transform.tx = isPresenting ? -44 : 44
+            toBookingVC.backButton.transform.tx = isPush ? -44 : 44
             fromBookingVC.backButton.transform.tx = 0
             toBookingVC.backButton.alpha = 0
             
-            toBookingVC.backButton.setPath(to: self.isPresenting ? .pullBack : .pushedForward)
+            toBookingVC.backButton.setPath(to: self.isPush ? .pullBack : .pushedForward)
             toBookingVC.backButton.playAnimation(to: .original, withDuration: 0.35)
-            fromBookingVC.backButton.playAnimation(to: self.isPresenting ? .pullBack : .pushedForward, withDuration: 0.35)
+            fromBookingVC.backButton.playAnimation(to: self.isPush ? .pullBack : .pushedForward, withDuration: 0.35)
             
             UIView.animate(withStyle: .halfTransitionAnimationStyle, animations: {
                 fromBookingVC.backButton.shapeView.transform = .identity
                 toBookingVC.backButton.transform.tx = 0
-                fromBookingVC.backButton.transform.tx = self.isPresenting ? 24 : -24
+                fromBookingVC.backButton.transform.tx = self.isPush ? 24 : -24
                 toBookingVC.backButton.alpha = 1
                 fromBookingVC.backButton.alpha = 0
             })
@@ -483,7 +482,6 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
                 let destinationRectInOriginView = seatMapSelectionVC.mainCardView.frame(in: selectedCell.contentView)
                 
                 if let cardViewInDestinationView = seatMapSelectionVC.mainCardView {
-                    
                     selectedCell.cardView.contentView.layer.removeAllAnimations()
                     selectedCell.cardView.layer.removeAllAnimations()
                     
@@ -525,12 +523,11 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
                     UIView.animate(withStyle: muatatedAnimationStyle,
                                    delay: 0.3 * animationStyle.duration,
                                    animations: {
-                                    dummyView.alpha = 1
+                        dummyView.alpha = 1
                     }, completion: { _ in
-                        UIView.animate(withStyle: muatatedAnimationStyle,
-                                       animations: {
-                                        dummyView.alpha = 0
-                                        dummyViewInCell.alpha = 0
+                        UIView.animate(withStyle: muatatedAnimationStyle, animations: {
+                            dummyView.alpha = 0
+                            dummyViewInCell.alpha = 0
                         })
                     })
                     
@@ -545,7 +542,6 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
                     }
                     
                     UIView.animate(withStyle: animationStyle, animations: {
-                        
                         cardViewInDestinationView.frame = destinationRectInMainContentView
                         cardViewInDestinationView.contentView.frame = cardViewInDestinationView.bounds
                         
@@ -569,22 +565,19 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
         }
         
         // MARK: Transition views in SeatMapSelectionViewController to SeatClassSelectionViewController
-        if let seatMapSelectionVC = fromViewController as? SeatMapSelectionViewController ,
-            let seatClassSelectionVC = toViewController as? SeatClassSelectionViewController{
+        if let seatMapSelectionVC = fromViewController as? SeatMapSelectionViewController,
+            let seatClassSelectionVC = toViewController as? SeatClassSelectionViewController {
             
             // MARK: Transition Train Image View
-            seatClassSelectionVC
-                .trainImageView
-                .translateAndFade(
-                    as: .transitionIn,
-                    animationStyle: animationStyle,
-                    percentageEndPoint: percentageEndPoint,
-                    translate: .init(x: 0, y: -18))
+            seatClassSelectionVC.trainImageView.translateAndFade(as: .transitionIn,
+                                                                 animationStyle: animationStyle,
+                                                                 percentageEndPoint: percentageEndPoint,
+                                                                 translate: .init(x: 0, y: -18))
             
             seatClassSelectionVC.tableView.clipsToBounds = false
             // Demo
             if let selectedIndexPath = seatClassSelectionVC.selectedIndexPath,
-                let selectedCell = seatClassSelectionVC.tableView.cellForRow(at: selectedIndexPath) as? SeatClassTableViewCell {
+               let selectedCell = seatClassSelectionVC.tableView.cellForRow(at: selectedIndexPath) as? SeatClassTableViewCell {
                 
                 seatClassSelectionVC.tableView.visibleCells.forEach { otherCell in
                     if otherCell != selectedCell {
@@ -597,7 +590,6 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
                 let destinationRectInOriginView = seatMapSelectionVC.mainCardView.frame(in: selectedCell.contentView)
                 
                 if let cardViewInDestinationView = seatMapSelectionVC.mainCardView {
-                    
                     selectedCell.cardView.contentView.layer.removeAllAnimations()
                     selectedCell.cardView.layer.removeAllAnimations()
                     
@@ -614,9 +606,6 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
                     dummyView.layer.setLayerStyle(seatMapSelectionVC.mainCardView.layer.layerStyle)
                     dummyView.layer.setShadow(seatMapSelectionVC.mainCardView.layer.shadowStyle)
                     dummyView.frame = destinationRectInMainContentView
-                    
-                    
-                    
                     
                     dummyViewInCell.layer.setLayerStyle(seatMapSelectionVC.mainCardView.layer.layerStyle)
                     dummyViewInCell.layer.setShadow(seatMapSelectionVC.mainCardView.layer.shadowStyle)
@@ -646,11 +635,9 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
                                    delay: 0.3 * animationStyle.duration,
                                    animations: {
                                     dummyView.alpha = 1
-                    }, completion: {
-                        _ in
-                        UIView.animate(withStyle: muatatedAnimationStyle,
-                                       animations: {
-                                        dummyView.alpha = 0
+                    }, completion: { _ in
+                        UIView.animate(withStyle: muatatedAnimationStyle, animations: {
+                            dummyView.alpha = 0
                         })
                     })
                     
@@ -664,8 +651,6 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
                     }
                     
                     UIView.animate(withStyle: animationStyle, animations: {
-                        
-                        
                         cardViewInDestinationView.frame = originRectInMainContentView
                         cardViewInDestinationView.contentView.frame = cardViewInDestinationView.bounds
                         
@@ -677,8 +662,7 @@ final class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
                         dummyView.frame = originRectInMainContentView
                         dummyViewInCell.frame = selectedCell.cardView.frame
                         
-                    }, completion: {
-                        _ in
+                    }, completion: { _ in
                         dummyView.removeFromSuperview()
                         dummyViewInCell.removeFromSuperview()
                         cardViewInDestinationView.layer.setLayerStyle(.card.normal)

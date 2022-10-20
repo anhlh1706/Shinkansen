@@ -126,14 +126,11 @@ extension SeatClassSelectionViewController: UITableViewDataSource {
             return print("Seat map is loading please wait")
         }
 
-        //
         selectedIndexPath = indexPath
 
         let seatClass = seatClasses[indexPath.row]
 
-        let selectedEntity = seatMap?.seatClassEntities.first(where: {
-            $0.seatClass == seatClass.seatClass
-        })
+        let selectedEntity = seatMap?.seatClassEntities.first(where: { $0.seatClass == seatClass.seatClass })
 
         let seatMapSelectionVC = SeatMapSelectionViewController()
         seatMapSelectionVC.seatClass = seatClass

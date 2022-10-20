@@ -154,18 +154,12 @@ class SeatMapSceneView: SCNView {
         antialiasingMode = UIScreen.main.scale > 2 ?
             .multisampling2X : .multisampling4X
         
-        /// Setup Loading Activity Indicator
         loadingActivityIndicatorView.backgroundColor = .subbackground
         let indicatorView = UIActivityIndicatorView(style: .medium)
         indicatorView.color = .subtext
         indicatorView.startAnimating()
-        loadingActivityIndicatorView
-            .addSubview(indicatorView,
-                        withConstaintEquals: .centerSafeArea)
-        
         loadingActivityIndicatorView.addSubview(indicatorView)
         indicatorView.centerAnchors == loadingActivityIndicatorView.centerAnchors
-        indicatorView.bottomAnchor == loadingActivityIndicatorView.bottomAnchor - 20
         addSubview(loadingActivityIndicatorView, withConstaintEquals: .edges)
         
         preservesSuperviewLayoutMargins = true

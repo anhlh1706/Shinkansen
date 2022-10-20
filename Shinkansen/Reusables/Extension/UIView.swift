@@ -246,6 +246,7 @@ extension UIView {
         return superview?.convert(frame, to: view) ?? convert(frame, to: view)
     }
     
+    // Appear/disappear anim
     func translateAndFade(as direction: TransitionalDirection,
                         animationStyle: UIViewAnimationStyle,
                         percentageEndPoint: TimeInterval = 1,
