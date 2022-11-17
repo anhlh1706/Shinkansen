@@ -69,7 +69,7 @@ final class SeatClassTableViewCell: UITableViewCell {
                                                alignment: .fill,
                                                spacing: 10)
         
-        seatClassIconImageView.centerYAnchor == seatClassNameSetView.centerYAnchor
+        seatClassIconImageView.topAnchor == seatClassNameSetView.topAnchor
         
         cardView.contentView.addSubview(mainContentStackView)
         mainContentStackView.topAnchor == cardView.contentView.topAnchor + 12

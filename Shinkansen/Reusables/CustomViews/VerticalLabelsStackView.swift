@@ -9,9 +9,9 @@ import UIKit
 
 final class VerticalLabelsStackView: UIStackView {
     
-    var titleLabel: Label
+    var titleLabel: UILabel
     
-    var subtitleLabel: Label
+    var subtitleLabel: UILabel
     
     enum _Type {
         case regular
@@ -33,8 +33,8 @@ final class VerticalLabelsStackView: UIStackView {
     init(title: String = " ",
          subtitle: String? = nil,
          textAlignment: NSTextAlignment = .natural) {
-        titleLabel = Label()
-        subtitleLabel = Label()
+        titleLabel = UILabel()
+        subtitleLabel = UILabel()
         super.init(frame: .zero)
         setupView()
         setupTheme()
@@ -68,7 +68,6 @@ final class VerticalLabelsStackView: UIStackView {
         subtitleLabel.font = UIFontMetrics(forTextStyle: .caption2).scaledFont(for: .systemFont(ofSize: 10, weight: .medium))
         spacing = 3
         setTextAlignment()
-        subtitleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
     }
     
     func setupValue(title: String, subtitle: String? = nil) {
